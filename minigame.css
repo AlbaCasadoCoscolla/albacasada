@@ -39,7 +39,7 @@ body {
   background: var(--bg-url) center/cover no-repeat fixed;
   color: #ff00bf;
   /* mantiene posición/cover/fixed del shorthand; solo cambia la imagen */
-  background-image: url('media/fondo.PNG');
+  background-image: url('media/fondo.png');
 }
 
 
@@ -732,3 +732,4 @@ header {
     top: calc(100% + 6px);
   }
 }
+
