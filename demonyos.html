@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Demonyos — Alba Casada</title>
+  <link rel="stylesheet" href="https://use.typekit.net/bim0due.css"/>
+  <link rel="stylesheet" href="demonyos.css"/>
+</head>
+<body data-project-slug="demonyos">
+
+  <!-- NAV (solo desktop/tablet) -->
+  <nav aria-label="principal">
+    <a href="index.html">Inicio</a>
+    <a href="projects.html">Proyectos</a>
+    <a href="about.html">Sobre mí</a>
+  </nav>
+
+  <!-- Menú móvil -->
+  <header class="mobile-header">
+    <button id="burgerBtn" class="burger" aria-label="Abrir menú" aria-controls="mobileOverlay" aria-expanded="false">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <nav id="mobileOverlay" class="mobile-overlay" aria-hidden="true" role="dialog" aria-label="Menú móvil">
+    <button id="closeMenu" class="close-menu" aria-label="Cerrar menú">
+      <svg width="50" height="50" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="mobile-menu-content">
+      <button class="mobile-menu-btn" data-nav="projects.html">Proyectos</button>
+      <button class="mobile-menu-btn" data-nav="about.html">Sobre mí</button>
+    </div>
+  </nav>
+
+  <!-- Flechas navegación entre proyectos -->
+  <button class="proj-nav proj-prev" id="projPrev" aria-label="Proyecto anterior" hidden>
+    <span class="arrow">‹</span><span class="proj-tooltip" id="prevTip"></span>
+  </button>
+  <button class="proj-nav proj-next" id="projNext" aria-label="Proyecto siguiente" hidden>
+    <span class="arrow">›</span><span class="proj-tooltip" id="nextTip"></span>
+  </button>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <figure class="cover" aria-label="Imagen destacada del proyecto">
+        <img src="media/galeria/demonyos/demonyos_logo.png" alt="Portada de 'Demonyos'">
+      </figure>
+
+      <div class="hero-grid">
+        <div class="summary">
+          <p class="description"> <strong>Demonyos</strong> es un grupo de música que nace en <strong>Valencia</strong> a principios del <strong>2023</strong> y busca en cada canción una forma de expresarse y de entender el mundo.</p>
+          <p class="lead">  Concretamente me encargo, junto con la colaboración de los propios integrantes (especialmente Arnau Diana Calatayud), del <strong>diseño gráfico e ilustrativo</strong> del proyecto: <strong>identidad</strong> y logotipo, portadas de singles y EPs, cartelería, pegatinas, merchandising y piezas audiovisuales como <strong>videoclips</strong> y <strong>visualizers</strong>.</p>
+          <div class="meta" aria-label="Software utilizado">
+            <span class="badge"><img src="media/logos/preocreate.png" alt="Procreate">Procreate</span>
+            <span class="badge"><img src="media/logos/photoshop.png" alt="Photoshop">Photoshop</span>
+            <span class="badge"><img src="media/logos/aftereffects.png" alt="AE">After Effects</span>
+            <span class="badge"><img src="media/logos/premiere.png" alt="Premiere">Premiere Pro</span>
+            <span class="badge"><img src="media/logos/blender.png" alt="Blender">Blender</span>
+          </div>
+        </div>
+
+        <!-- Donde antes había vídeo: ahora espacio para IMAGEN -->
+        <figure class="hero-render" aria-label="Imagen del proyecto">
+          <img src="media/galeria/demonyos/main.gif" alt="Imagen relacionada con el proyecto">
+        </figure>
+      </div>
+    </section>
+
+    <!-- GALERÍA - Carátulas -->
+    <h2>Carátulas</h2>
+    <section class="gallery masonry fullbleed is-collapsed" aria-label="Galería principal">
+      <!-- 6 cuadrados (3x2) con textito debajo -->
+      <figure class="pin">
+        <a href="media/galeria/demonyos/portada.png" data-gallery="renders">
+          <img class="thumb" src="media/galeria/demonyos/portada.png" alt="Vista 1">
+        </a>
+        <figcaption class="caption">El Mensaje (2024)</figcaption>
+      </figure>
+
+      <figure class="pin">
+        <a href="media/galeria/demonyos/portada1.png" data-gallery="renders">
+          <img class="thumb" src="media/galeria/demonyos/portada1.png" alt="Vista 2">
+        </a>
+        <figcaption class="caption">Canción de Mierda (2024)</figcaption>
+      </figure>
+      <figure class="pin">
+        <a href="media/galeria/demonyos/portada2.jpg" data-gallery="renders">
+          <img class="thumb" src="media/galeria/demonyos/portada2.jpg" alt="Vista 2">
+        </a>
+        <figcaption class="caption">Todo bien (2025)</figcaption>
+      </figure>
+      <figure class="pin">
+        <a href="media/galeria/demonyos/portada4.png" data-gallery="renders">
+          <img class="thumb" src="media/galeria/demonyos/portada4.png" alt="Vista 3">
+        </a>
+        <figcaption class="caption">El Plan (2025)</figcaption>
+      </figure>
+
+      <figure class="pin">
+        <a href="media/galeria/demonyos/portada5.jpg" data-gallery="renders">
+          <img class="thumb" src="media/galeria/demonyos/portada5.jpg" alt="Vista 4">
+        </a>
+        <figcaption class="caption">Las Cosas Claras (2025)</figcaption>
+      </figure>
+
+      <figure class="pin">
+        <a href="media/galeria/demonyos/portada6.png" data-gallery="renders">
+          <img class="thumb" src="media/galeria/demonyos/portada6.png" alt="Vista 5">
+        </a>
+        <figcaption class="caption">El Plan EP (2025)</figcaption>
+      </figure>
+    </section>
+    <!-- VIDEOS (antes “Equipo”) -->
+    <section class="team" aria-label="Videoclips y Visualizers">
+      <h2>Videoclips y Visualizers</h2>
+
+      <!-- Vídeo grande -->
+      <div class="video-feature"> 
+  <figure>
+    <iframe width="1050" height="591" src="https://www.youtube.com/embed/wgs-NPe7xUA?si=Vz2NJI6L6KNnXWMQ" 
+      title="YouTube video player" frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+    <figcaption class="caption">Videoclip de Todo Bien.</figcaption>
+  </figure>
+</div>
+
+      <!-- 2 “vídeos” horizontales que serán GIFs -->
+      <div class="video-grid">
+        <figure>
+          <iframe width="520" height="292" src="https://www.youtube.com/embed/mCA2XU1z5FM?si=5hOj2j7DIZLe-RP-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </figure>
+        <figure>
+          <iframe width="520" height="292" src="https://www.youtube.com/embed/bikNYKfGo-E?si=sEaHxFaWfu72mdBa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CARTELERÍA (sin scroll; 2 verticales + 1 GIF vertical) -->
+    <section class="process proc-static" aria-label="Proceso y bocetos">
+      <h2>Cartelería</h2>
+      <div class="proc-stage" id="processStage">
+        <div class="posters-grid">
+          <figure>
+            <a href="media/galeria/demonyos/hangar.png" data-gallery="posters">
+              <img src="media/galeria/demonyos/hangar.png" alt="Cartel 1 vertical">
+            </a>
+            <figcaption class="caption">Cartel Hangar</figcaption>
+          </figure>
+          <figure>
+            <a href="media/galeria/demonyos/Pompompompa.png" data-gallery="posters">
+              <img src="media/galeria/demonyos/Pompompompa.png" alt="Cartel 2 vertical">
+            </a>
+            <figcaption class="caption">Cartel Pompa Fest</figcaption>
+          </figure>
+          <figure>
+            <a href="media/galeria/demonyos/cartel.png" data-gallery="posters">
+              <img src="media/galeria/demonyos/cartel.png" alt="Cartel 3 vertical">
+            </a>
+            <figcaption class="caption">Cartel de la Gira</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Imagen ampliada" hidden>
+    <div class="lb-frame">
+      <img class="lb-img" id="lbImg" alt="Imagen ampliada">
+      <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+      <button class="lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+      <button class="lb-next" id="lbNext" aria-label="Siguiente">›</button>
+    </div>
+  </div>
+
+  <script>
+/* ========== Config ========== */
+const PROJECTS = [
+  { slug: 'memories-en-cendra', url: 'memories.html', title: 'Memories en Cendra' },
+  { slug: 'demonyos',           url: 'demonyos.html', title: 'Demonyos' },
+  { slug: 'eklektik',           url: 'eklektik.html', title: 'Eklektik' }
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+  /* ==========================
+     NAV entre proyectos
+  ========================== */
+  const currentSlug = document.body.getAttribute('data-project-slug');
+  const currentIndex = PROJECTS.findIndex(p => p.slug === currentSlug);
+  const btnPrev = document.getElementById('projPrev');
+  const btnNext = document.getElementById('projNext');
+  const tipPrev = document.getElementById('prevTip');
+  const tipNext = document.getElementById('nextTip');
+
+  if (currentIndex > 0 && btnPrev && tipPrev) {
+    const prev = PROJECTS[currentIndex - 1];
+    tipPrev.textContent = prev.title;
+    btnPrev.hidden = false;
+    btnPrev.addEventListener('click', () => { window.location.href = prev.url; });
+  }
+  if (currentIndex >= 0 && currentIndex < PROJECTS.length - 1 && btnNext && tipNext) {
+    const next = PROJECTS[currentIndex + 1];
+    tipNext.textContent = next.title;
+    btnNext.hidden = false;
+    btnNext.addEventListener('click', () => { window.location.href = next.url; });
+  }
+
+  /* ==========================
+     LIGHTBOX
+  ========================== */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const btnClose = document.getElementById('lbClose');
+  const btnPrevLb = document.getElementById('lbPrev');
+  const btnNextLb = document.getElementById('lbNext');
+
+  let group = '';
+  let shots = [];
+  let idx = 0;
+
+  function collect(groupName){ return Array.from(document.querySelectorAll(`[data-gallery="${groupName}"]`)); }
+  function openAt(a){
+    group = a.getAttribute('data-gallery') || '';
+    shots = collect(group);
+    idx = shots.indexOf(a);
+    if (idx < 0) idx = 0;
+    update();
+    lb.classList.add('open');
+    lb.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    lb.classList.remove('open');
+    lb.setAttribute('hidden','');
+    document.body.style.overflow = '';
+  }
+  function update(){
+    const link = shots[idx];
+    if (!link) return close();
+    lbImg.src = link.getAttribute('href');
+    const imgEl = link.querySelector('img');
+    lbImg.alt = (imgEl && imgEl.alt) ? `Imagen ampliada — ${imgEl.alt}` : 'Imagen ampliada';
+  }
+  function prev(){ idx = (idx - 1 + shots.length) % shots.length; update(); }
+  function next(){ idx = (idx + 1) % shots.length; update(); }
+
+  document.querySelectorAll('[data-gallery]').forEach((a)=>{
+    a.addEventListener('click', (e)=>{ e.preventDefault(); openAt(a); });
+    a.setAttribute('role','button');
+    a.setAttribute('tabindex','0');
+  });
+
+  btnClose.addEventListener('click', close);
+  btnPrevLb.addEventListener('click', prev);
+  btnNextLb.addEventListener('click', next);
+  lb.addEventListener('click', (e)=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown', (e)=>{
+    if(lb.classList.contains('open')){
+      if(e.key==='Escape') close();
+      if(e.key==='ArrowLeft') prev();
+      if(e.key==='ArrowRight') next();
+    }
+  });
+
+  /* ==========================
+     Galería: Ver más / Ver menos
+  ========================== */
+  const gallery = document.querySelector('.gallery.masonry.fullbleed');
+  const galTog  = document.getElementById('galleryToggle');
+  if (gallery && galTog){
+    function setGal(expanded){
+      gallery.classList.toggle('is-collapsed', !expanded);
+      galTog.setAttribute('aria-expanded', String(expanded));
+      galTog.textContent = expanded ? 'Ver menos' : 'Ver más';
+    }
+    setGal(false);
+    galTog.addEventListener('click', ()=> setGal(galTog.getAttribute('aria-expanded') !== 'true'));
+  }
+
+  /* ==========================
+     PROCESO (estático si .proc-static)
+  ========================== */
+  const proc = document.getElementById('processStage');
+  const procRoot = proc ? proc.closest('.process') : null;
+
+  if (procRoot && procRoot.classList.contains('proc-static')) {
+    // Modo estático: sin slider ni scroll-snap
+  } else if (proc && !procRoot.classList.contains('proc-scroll')){
+    // (sigue disponible el modo slider clásico si se usa en otros proyectos)
+    const viewport = proc.querySelector('.proc-viewport');
+    const track = proc.querySelector('.proc-track');
+    const slides = Array.from(track ? track.querySelectorAll('.proc-slide') : []);
+    const prevB = proc.querySelector('.proc-prev');
+    const nextB = proc.querySelector('.proc-next');
+    let i = 0;
+
+    if (viewport && track && slides.length) {
+      function slideWidth(){ return viewport.clientWidth; }
+      function render(){
+        const x = -i * slideWidth();
+        track.style.transform = `translateX(${x}px)`;
+        if (prevB) prevB.disabled = i === 0;
+        if (nextB) nextB.disabled = i === slides.length - 1;
+      }
+      prevB && prevB.addEventListener('click', ()=>{ if(i>0){ i--; render(); } });
+      nextB && nextB.addEventListener('click', ()=>{ if(i<slides.length-1){ i++; render(); } });
+      window.addEventListener('resize', render);
+      proc.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowLeft'){ e.preventDefault(); if(i>0){ i--; render(); } }
+        if(e.key === 'ArrowRight'){ e.preventDefault(); if(i<slides.length-1){ i++; render(); } }
+      });
+      render();
+    }
+  } else if (procRoot && procRoot.classList.contains('proc-scroll')) {
+    // (sigue disponible el modo scroll-snap para otros proyectos)
+    const viewport = proc.querySelector('.proc-viewport');
+    proc.addEventListener('keydown', (e)=>{
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); viewport.scrollBy({ left: -viewport.clientWidth/1.05, behavior: 'smooth' }); }
+      if (e.key === 'ArrowRight'){ e.preventDefault(); viewport.scrollBy({ left:  viewport.clientWidth/1.05, behavior: 'smooth' }); }
+    });
+    viewport.addEventListener('wheel', (e)=>{
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        viewport.scrollBy({ left: e.deltaY, behavior: 'auto' });
+      }
+    }, { passive: false });
+    let isDown = false, startX = 0, startScroll = 0;
+    const start = (x)=>{ isDown = true; startX = x; startScroll = viewport.scrollLeft; };
+    const move  = (x)=>{ if(!isDown) return; viewport.scrollLeft = startScroll - (x - startX); };
+    const stop  = ()=>{ isDown = false; };
+    viewport.addEventListener('mousedown',  (e)=>{ start(e.pageX); });
+    viewport.addEventListener('mousemove',  (e)=>{ move(e.pageX); });
+    viewport.addEventListener('mouseleave', stop);
+    viewport.addEventListener('mouseup',    stop);
+    viewport.addEventListener('touchstart', (e)=>{ if(e.touches[0]) start(e.touches[0].pageX); }, {passive:true});
+    viewport.addEventListener('touchmove',  (e)=>{ if(e.touches[0]) move(e.touches[0].pageX); },  {passive:true});
+    viewport.addEventListener('touchend',   stop);
+  }
+
+  /* ==========================
+     MENÚ MÓVIL (burger)
+  ========================== */
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  const closeMenu = document.getElementById('closeMenu');
+
+  function openMenu(){
+    mobileOverlay.classList.add('open');
+    mobileOverlay.setAttribute('aria-hidden','false');
+    burgerBtn.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+    const firstBtn = mobileOverlay.querySelector('.mobile-menu-btn');
+    if (firstBtn) firstBtn.focus();
+  }
+  function hideMenu(){
+    mobileOverlay.classList.remove('open');
+    mobileOverlay.setAttribute('aria-hidden','true');
+    burgerBtn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+    burgerBtn.focus();
+  }
+
+  if (burgerBtn && mobileOverlay && closeMenu){
+    burgerBtn.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', hideMenu);
+    mobileOverlay.addEventListener('click', (e)=>{ if (e.target === mobileOverlay) hideMenu(); });
+    document.addEventListener('keydown', (e)=>{ if (mobileOverlay.classList.contains('open') && e.key === 'Escape'){ hideMenu(); } });
+    mobileOverlay.querySelectorAll('.mobile-menu-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const href = btn.getAttribute('data-nav');
+        if (href) window.location.href = href;
+      });
+    });
+  }
+});
+  </script>
+</body>
+</html>

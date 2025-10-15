@@ -1,0 +1,900 @@
+:root{
+  --navH: 72px;
+  --peek: 60px;
+  --softw-w: clamp(380px, 32vw, 460px);
+  --gif-w:   clamp(320px, 28vw, 360px);
+  --parallax-blur: 10px;
+  --parallax-veil: rgba(255, 243, 198, 0.35);
+  --veil-fade: 48px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff3c6;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+/* Ocultar UI móvil por defecto */
+.mobile-header,
+.mobile-overlay{
+  display: none;
+}
+.bocadillo{
+  display: none;
+}
+
+/* Oculta en escritorio el GIF inferior (post-parallax) */
+#parallax + a[href="minigame.html"]{
+  display: none;
+}
+
+/* ===== NAV FIJA (desktop) ===== */
+nav{
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  padding: 1.2rem 2rem;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 5px rgba(186,151,36,0.1);
+  z-index: 3000;
+}
+nav a{
+  text-decoration: none;
+  color: #ff63cb;
+  transition: color .3s;
+  font-family: "gambado-sans-forte", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.2em;
+}
+nav a:hover{
+  color: #ff3399;
+}
+
+/* ===== ABOUT STICKY (desktop) ===== */
+#about-pin{
+  position: sticky;
+  top: var(--navH);
+  height: calc(100vh - var(--navH) - var(--peek));
+  z-index: 1;
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  padding: clamp(16px, 2.5vh, 28px) clamp(20px, 5vw, 48px);
+  display: grid;
+  grid-template-columns: minmax(460px,1fr) minmax(420px,0.9fr);
+  grid-template-rows: 1fr auto;
+  column-gap: clamp(18px, 4vw, 44px);
+  align-items: center;
+  justify-items: start;
+}
+
+/* Ubicaciones desktop */
+.about-text{
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  max-width: 650px;
+}
+.main-img{
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  align-self: center;
+}
+
+/* Holi */
+.holi-img{
+  width: clamp(550px, 60%, 520px);
+  height: auto;
+  display: block;
+  margin-bottom: clamp(10px, 2vh, 16px);
+}
+
+.about-text p{
+  font-size: clamp(1rem, .98rem + .2vw, 1.12rem);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* ===== Contacto ===== */
+.contact{
+  margin-block: clamp(1rem, 2.2vh, 1.6rem);
+}
+.contact h3{
+  margin-bottom: .75rem;
+  font-family: "gambado-sans-forte", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: #ff66cc;
+}
+.contact-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.contact-item{
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  color: inherit;
+  padding: .6rem .8rem;
+  border-radius: .8rem;
+  transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+.contact-item:hover,
+.contact-item:focus-visible{
+  background: #fce6966c;
+  transform: translateY(-1px);
+  outline: none;
+}
+.contact-icon{
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex: 0 0 30px;
+}
+
+/* ===== Softwares ===== */
+.softwares{
+  margin-top: clamp(14px, 2vh, 20px);
+}
+.contacto h3,
+.softwares h3{
+  color: #ff66cc;
+  margin-bottom: .8rem;
+  font-family: "gambado-sans-forte", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.softwares-grid{
+  background: #fff;
+  width: var(--softw-w);
+  border-radius: 20px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(60px, 1fr));
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  animation: float 3s ease-in-out infinite;
+}
+.softwares-grid img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  transition: transform .3s;
+}
+.softwares-grid img:hover{
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* GIF derecha (desktop) */
+.main-img{
+  width: var(--gif-w);
+  max-width: 100%;
+  height: auto;
+  margin-top: 5rem;
+}
+
+/* flotación suave reutilizable */
+@keyframes float{
+  0%{ transform: translateY(0); }
+  50%{ transform: translateY(-10px); }
+  100%{ transform: translateY(0); }
+}
+
+/* ===== PARALLAX ===== */
+.parallax-stack{
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+}
+
+.parallax-viewport{
+  position: sticky;
+  top: var(--navH);
+  height: calc(100vh - var(--navH));
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+/* Fondo por CSS var --bg */
+.parallax-viewport .panel{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: var(--bg);
+}
+
+.panel-inner{
+  width: min(1100px, 92vw);
+  backdrop-filter: blur(2px);
+}
+.panel-header h2{
+  font-family: "gambado-sans-forte", sans-serif;
+  font-weight: 700;
+  color: #7d4ce0;
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  margin-bottom: 1rem;
+}
+
+/* Ventanita del panel */
+.panel-content.grid-areas{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-areas:
+    "edu more"
+    "exp more"
+    "cta cta";
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+  border-radius: 16px;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+.panel-content .edu{ grid-area: edu; }
+.panel-content .exp{ grid-area: exp; }
+.panel-content .more{ grid-area: more; }
+.panel-content h3{
+  color: #ff66cc;
+  font-family: "gambado-sans-forte", sans-serif;
+  margin: 0 0 .6rem;
+}
+.panel-content h4{
+  margin-top: .8rem;
+  margin-bottom: .4rem;
+  font-weight: 700;
+}
+.edu-list{
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: .35rem;
+}
+.edu-list li strong{
+  color: #111;
+}
+.chip-list{
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.chip-list li{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 999px;
+  padding: .35rem .7rem;
+  font-size: .95rem;
+}
+
+/* CTA */
+.panel-cta{
+  grid-area: cta;
+  display: flex;
+  gap: .6rem;
+  margin-top: .5rem;
+}
+.btn-cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .65rem .9rem;
+  border-radius: 12px;
+  background: #7d4ce0;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 6px 12px rgba(13, 0, 194, 0.15);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.btn-cta:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(13, 0, 194, 0.22);
+}
+.btn-cta.btn-outline{
+  background: #fff;
+  color: #7d4ce0;
+  border: 2px solid #7d4ce0;
+}
+
+/* Velo del viewport */
+.parallax-viewport{
+  background: transparent;
+  isolation: isolate;
+}
+.parallax-viewport::before{
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--parallax-veil);
+  backdrop-filter: blur(var(--parallax-blur));
+  -webkit-backdrop-filter: blur(var(--parallax-blur));
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--veil-fade), #000 calc(100% - var(--veil-fade)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent, #000 var(--veil-fade), #000 calc(100% - var(--veil-fade)), transparent 100%);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  transform: translateZ(0);
+}
+.parallax-viewport .panel{
+  z-index: 1;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+  .parallax-viewport::before{
+    background: rgba(255,243,198,0.55);
+  }
+}
+
+/* =================== MÓVIL (≤576px) =================== */
+@media (max-width: 576px){
+
+  /* Guardarraíles y utilidades */
+  :root{
+    --side: 5vw;
+    --soft-icon: clamp(52px, 13vw, 60px);
+    --gif-nudge-x: 30px;
+  }
+
+  /* Nav desktop fuera; UI móvil visible */
+  nav{
+    display: none;
+  }
+  .mobile-header{
+    display: block !important;
+    position: fixed;
+    top: 2.5svh;
+    right: 5vw;
+    z-index: 130;
+  }
+  .burger{
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  .burger svg path{
+    stroke: #ff56d7;
+  }
+
+  #mobileOverlay{
+    display: flex !important;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    background: #ffe44b;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+  }
+  #mobileOverlay.open{
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .close-menu{
+    position: absolute;
+    top: 2.5svh;
+    right: 5vw;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border: none;
+    background: none;
+    color: #ff56d7;
+    cursor: pointer;
+  }
+  .close-menu svg path{
+    stroke: #ff56d7;
+  }
+  .mobile-menu-content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mobile-menu-btn{
+    padding: 16px 18px;
+    border: none;
+    border-radius: 16px;
+    background: #ff56d7;
+    color: #fff;
+    font-size: 1.25rem;
+    font-family: "gambado-sans-forte", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ABOUT fijo detrás (fondo estático) */
+  #about-pin{
+    width: 100%;
+    padding: clamp(16px, 2.5vh, 28px) var(--side);
+    margin-inline: auto;
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    z-index: 1;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    row-gap: clamp(14px, 2.8vh, 22px);
+    align-items: start;
+    justify-items: center;
+    padding-left: max(var(--side), env(safe-area-inset-left));
+    padding-right: max(var(--side), env(safe-area-inset-right));
+  }
+
+  .about-text,
+  .contact,
+  .softwares{
+    width: 100%;
+    max-width: 100%;
+  }
+  .about-text p,
+  .panel-content{
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+  }
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+  .holi-img{
+    width: 82vw;
+    height: auto;
+    display: block;
+    margin: 1rem auto 1rem auto;
+  }
+  .about-text p{
+    font-size: clamp(1rem, 0.98rem + 0.6vw, 1.1rem);
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+  }
+
+  .contact{
+    margin-block: 1rem;
+    width: 100%;
+  }
+  .contact-list{
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .contact-list li span{
+    display: none;
+  }
+
+  .softwares{
+    width: 100%;
+    margin: 0.5rem;
+  }
+  .softwares-grid{
+    width: 100%;
+    max-width: 100%;
+    padding: 0.8rem;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(var(--soft-icon), 1fr));
+    gap: 0.8rem;
+    justify-items: center;
+    align-items: center;
+    box-sizing: border-box;
+    animation: float 3s ease-in-out infinite;
+  }
+  .softwares-grid img{
+    width: var(--soft-icon);
+    height: var(--soft-icon);
+    object-fit: contain;
+    display: block;
+  }
+
+  html,
+  body{
+    overflow-x: hidden;
+  }
+
+  /* Oculta el GIF dentro de ABOUT en móvil (mostramos el de abajo/fijo) */
+  #about-pin a[href="minigame.html"]{
+    display: none !important;
+  }
+
+  /* ===== Parallax SIN sticky ni scroll interno ===== */
+  .parallax-viewport{
+    position: static;
+    top: auto;
+    height: auto;
+    overflow: visible;
+    background: transparent !important;
+  }
+  .parallax-viewport::before{
+    content: none !important;
+  }
+  .parallax-viewport .panel{
+    position: relative;
+    inset: auto;
+    transform: none !important;
+    background-image: var(--bg) !important;
+    background-position: center top;
+    background-size: contain !important;
+    background-repeat: no-repeat;
+    min-height: 100svh;
+    padding-top: clamp(16px, 4vh, 36px);
+    padding-bottom: clamp(24px, 6vh, 56px);
+  }
+
+  .panel-inner{
+    width: min(960px, 92vw);
+    margin-top: 0;
+    max-height: none;
+    overflow: visible;
+    padding-inline: clamp(10px, 3.5vw, 20px);
+  }
+
+  .panel-content.grid-areas{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "edu" "exp" "more" "cta";
+    gap: 0.9rem;
+    padding: 0.9rem 1rem 1rem;
+  }
+  .panel-content .edu{ grid-area: edu; }
+  .panel-content .exp{ grid-area: exp; }
+  .panel-content .more{ grid-area: more; }
+  .panel-content h3{
+    margin: 0 0 .5rem;
+    font-size: 1.05rem;
+  }
+  .panel-content h4{
+    margin-top: .6rem;
+    margin-bottom: .35rem;
+    font-size: 1rem;
+  }
+  .edu-list{ gap: .3rem; }
+  .chip-list{ gap: .45rem; }
+  .chip-list li{
+    padding: .32rem .65rem;
+    font-size: .95rem;
+  }
+
+  .panel-cta{
+    grid-area: cta;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .6rem;
+    margin-top: .25rem;
+  }
+  .btn-cta{
+    width: 100%;
+    padding: .65rem .9rem;
+    border-radius: 12px;
+  }
+
+  /* Orden/z-index delante de ABOUT y separación extra */
+  #parallax{
+    position: relative;
+    z-index: 2;
+    margin-top: clamp(12px, 2vh, 20px);
+  }
+
+  /* ====== CAMBIO SOLICITADO: panel SIN imagen + GIF “dentro” ====== */
+  .parallax-viewport .panel{
+    /* anula la imagen de fondo en móvil y deja rectángulo liso */
+    --bg: none !important;
+    background-color: #fff;
+  }
+
+  /* Ancla del GIF + bocadillo fijo al fondo, centrado */
+  #parallax + a[href="minigame.html"]{
+    display: block;
+    position: fixed;
+    left: 50%;
+    bottom: clamp(16px, 6vh, 48px);
+    transform: translateX(-50%);
+    width: clamp(220px, 70vw, 420px);
+    margin: 0 !important;
+    z-index: 2; /* por delante del panel (z=1) */
+  }
+
+  /* GIF dentro del ancla (ajustamos offset anterior) */
+  #parallax + a[href="minigame.html"] .main-img{
+    width: 80vw;
+    height: auto;
+    display: block;
+    left: auto;
+    transform: none;
+  }
+
+  /* Bocadillo (tu animación y posiciones se mantienen) */
+  #parallax + a[href="minigame.html"] .bocadillo{
+    display: block;
+    position: absolute;
+    top: -35%;
+    left: -20%;
+    z-index: 3;
+    pointer-events: none;
+    transform: translateY(0);
+    transform-origin: left top;
+    animation: bounceY-stable 2.2s ease-in-out infinite;
+    will-change: transform;
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  @keyframes bounceY-stable{
+    0%, 100% { transform: translateY(0); }
+    30%      { transform: translateY(-10px); }
+    55%      { transform: translateY(-5px); }
+    75%      { transform: translateY(-10px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    #parallax + a[href="minigame.html"] .bocadillo{
+      animation: none;
+    }
+  }
+
+  /* ① Lo que queda fijo detrás */
+  #about-pin.about-fixed{
+    position: fixed;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 100svh;
+    z-index: 0;
+  }
+
+  /* ② Lo que pasa por delante */
+  #parallax,
+  #parallax + a[href="minigame.html"]{
+    position: relative;
+    z-index: 2;
+  }
+  #parallax + a[href="minigame.html"]{
+  bottom: clamp(8px, 2.5vh, 24px);  /* estaba más alto: ahora queda un poco más abajo */
+}
+
+/* Bocadillo un pelín más bajo respecto al GIF */
+#parallax + a[href="minigame.html"] .bocadillo{
+  top: -28%;   /* antes -35% */
+}
+  
+
+  /* ③ Parallax sin sticky (asegurado) */
+  .parallax-viewport{
+    position: static !important;
+    top: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .parallax-viewport .panel{
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+  }
+ #parallax + a[href="minigame.html"]::before{
+  content: "";
+  position: fixed;
+  inset: 0;         /* ocupa todo el viewport */
+  background: #fff; /* blanco sólido */
+  z-index: -1;      /* detrás del GIF, delante del parallax */
+  pointer-events: none;
+  left: -25%;
+  top: -15%;
+  width: 300%;
+  height: 130%;
+
+}
+}
+
+/* ===== Breakpoints intermedios originales (sin tocar tamaños) ===== */
+@media (min-width:1024px) and (max-width:1299px){
+  :root{
+    --parallax-blur: 6px;
+    --veil-fade: 120px;
+    --parallax-veil: rgba(255,243,198,0.25);
+    --lift-exp: 18px;
+    --lift-cta: 28px;
+  }
+  #about-pin{
+    margin-top: 0.1rem;
+    grid-template-columns: minmax(560px,1fr) minmax(420px,0.9fr);
+  }
+  .holi-img{
+    width: 300px;
+  }
+  .main-img{
+    margin-top: 5rem;
+    width: 250px;
+  }
+  .parallax-viewport .panel{
+    min-height: 100%;
+  }
+  .panel{
+    size: 90;
+  }
+  .panel-inner{
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 8rem;
+    width: min(900px, 82vw);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .panel-content .exp{
+    margin-top: calc(-5 * var(--lift-exp));
+  }
+  .panel-cta{
+    margin-top: calc(-4 * var(--lift-cta));
+  }
+}
+@media (min-width:1300px) and (max-width:1499px){
+  :root{
+    --peek: 12px;
+  }
+  .panel-inner{
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 5rem;
+    width: min(900px, 82vw);
+  }
+  #about-pin{
+    margin-top: 0.1rem;
+  }
+  .holi-img{
+    width: 350px;
+    margin-top: -7rem;
+  }
+  .gif-cta{
+    margin-left: 10%;
+  }
+  .main-img{
+    margin-top: 1rem;
+    width: 250px;
+  }
+}
+@media (min-width:1500px) and (max-width:1799px){
+  :root{
+    --peek: 2px;
+  }
+  .holi-img{
+    width: 350px;
+    margin-top: -7rem;
+  }
+  .main-img{
+    margin-top: 1rem;
+    width: 300px;
+  }
+}
+
+/* Hint del GIF (desktop y tablets) */
+@media (min-width: 577px){
+  .gif-cta{
+    position: relative;
+    display: inline-block;
+  }
+  .gif-cta::after{
+    content: "Haz click para jugar <3";
+    position: absolute;
+    left: 50%;
+    top: calc(100% + -50px);
+    transform: translateX(-50%) translateY(0);
+    padding: 6px 10px;
+    font: 600 20px/1 "Poppins", sans-serif;
+    color: #9c4ac6;
+    background: rgba(255,255,255,.9);
+    border: 2px solid #c9b3ff;
+    border-radius: 12px;
+    white-space: nowrap;
+    box-shadow: 0 6px 14px rgba(0,0,0,.15);
+    z-index: 5;
+    opacity: 1;
+    pointer-events: none;
+    transition: none;
+  }
+  .gif-cta:hover::after,
+  .gif-cta:focus-visible::after,
+  .gif-cta.show-hint::after{
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+  }
+}
+
+/* En móvil no se muestra el hint */
+@media (max-width: 576px){
+  .gif-cta::after{
+    content: none !important;
+  }
+}
+/* ===== Tablet ~700px → 1024px ===== */
+
+@media (min-width: 700px) and (max-width: 1024px) {
+
+  /* Fondo del parallax más presente */
+  .parallax-viewport .panel {
+    background-size: cover;      /* ocupa más */
+    background-position: center; /* centrado; usa 'center top' si prefieres */
+    min-height: 96svh;        
+    width: auto;
+  }
+
+  /* Empuja un pelín el contenido del panel */
+  .panel-inner {
+    margin-top: clamp(40px, 6vh, 80px);
+  }
+
+  /* ——— TAMAÑOS MÁS PEQUEÑOS ——— */
+
+  /* Ilustración “Holi” más pequeña */
+  .holi-img {
+    width: clamp(260px, 28vw, 320px);
+    height: auto;
+    margin-top: 15%;
+  }
+
+  .about-text p{
+    font-size: 1rem;
+  }
+
+  .contact-item span{
+    display: none;
+  }
+  .softwares-grid{
+    width: 70%;
+  }
+
+  /* GIF principal más pequeño (en About) */
+  .main-img {
+    width: clamp(220px, 24vw, 280px);
+    max-width: 100%;
+    height: auto;
+    margin-left: 20%;
+  }
+  .parallax-stack{
+    margin-top: 9%;
+  }
+ 
+
+  /* Si el GIF está dentro del CTA (.gif-cta), fuerza aún un pelín menos */
+  .gif-cta .main-img {
+    width: clamp(200px, 22vw, 260px);
+  }
+
+  /* Asegura que el hint “Haz click para jugar <3” no quede tapado */
+  .gif-cta {
+    position: relative;
+    z-index: 5;       /* por encima del panel (panel z=1) */
+  }
+  .gif-cta::after {
+    z-index: 6;       /* el bocadillo por encima del propio enlace */
+    top: calc(100% + 6px);
+  }
+}
+

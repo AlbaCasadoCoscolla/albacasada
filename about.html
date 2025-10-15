@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alba Casada - About Me</title>
+  <link rel="stylesheet" href="about.css"/>
+  <link rel="stylesheet" href="https://use.typekit.net/bim0due.css"/>
+</head>
+<body>
+
+  <!-- ===== Header + Menú móvil (solo visible en móvil vía CSS) ===== -->
+  <header class="mobile-header">
+    <button id="burgerBtn" class="burger" aria-label="Abrir menú" aria-controls="mobileOverlay" aria-expanded="false">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <nav id="mobileOverlay" class="mobile-overlay" aria-hidden="true">
+    <button id="closeMenu" class="close-menu" aria-label="Cerrar menú">
+      <svg width="50" height="50" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="mobile-menu-content">
+      <button class="mobile-menu-btn" onclick="location.href='projects.html'">Proyectos</button>
+      <button class="mobile-menu-btn" onclick="location.href='about.html'">Sobre mí</button>
+    </div>
+  </nav>
+  <!-- ===== /Header + Menú móvil ===== -->
+
+  <!-- Barra de navegación fija (desktop) -->
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="projects.html">Proyectos</a>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about-pin" class="about">
+    <div class="about-text">
+      <img src="media/holi.GIF" alt="Holi" class="holi-img">
+      <p>
+  Soy Alba Casada, artista 3D e ilustradora de Valencia. Con formación en Bellas Artes y una trayectoria orientada a la tecnología, desarrollo proyectos creativos desde una visión multidisciplinar. Actualmente me dedico a la dirección y coordinación artística, con interés en la realidad aumentada, virtual y el desarrollo web (HTML, CSS y JavaScript).
+      </p>
+
+      <section class="contact">
+        <h3>Contacto</h3>
+        <ul class="contact-list">
+          <li>
+            <a class="contact-item" href="mailto:albaacc01@gmail.com" aria-label="Enviar correo a albaacc01@gmail.com">
+              <img class="contact-icon" src="media/logos/mail.png" alt="" width="20" height="20" loading="lazy">
+              <span>albaacc01@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a class="contact-item" href="https://behance.net/albacasado3" target="_blank" rel="noopener" aria-label="Abrir Behance en una pestaña nueva">
+              <img class="contact-icon" src="media/logos/behance.png" alt="" width="20" height="20" loading="lazy">
+              <span>Behance</span>
+            </a>
+          </li>
+          <li>
+            <a class="contact-item" href="https://linkedin.com/in/alba-casado-coscolla-b87419294" target="_blank" rel="noopener" aria-label="Abrir LinkedIn en una pestaña nueva">
+              <img class="contact-icon" src="media/logos/linkedin.png" alt="" width="20" height="20" loading="lazy">
+              <span>LinkedIn</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <div class="softwares">
+        <h3>Softwares</h3>
+        <div class="softwares-grid">
+          <img src="media/logos/illustrator.webp" alt="Illustrator" class="logos">
+          <img src="media/logos/indesign.png" alt="InDesign" class="logos">
+          <img src="media/logos/photoshop.png" alt="Photoshop" class="logos">
+          <img src="media/logos/aftereffects.png" alt="After Effects" class="logos">
+          <img src="media/logos/premiere.png" alt="Premiere" class="logos">
+          <img src="media/logos/preocreate.png" alt="Procreate" class="logos">
+          <img src="media/logos/blender.png" alt="Blender" class="logos">
+          <img src="media/logos/unity.png" alt="Unity" class="logos">
+        </div>
+      </div>
+    </div>
+
+    <a href="minigame.html" class="gif-cta" aria-label="Abrir minijuego">
+       <img src="media/yo.gif" alt="Yo" class="main-img">
+    </a>
+  </section>
+
+  <!-- PARALLAX -->
+<section id="parallax" class="parallax-stack" aria-label="Educación, experiencia y más">
+  <div class="parallax-viewport">
+    <!-- ÚNICO PANEL -->
+    <article class="panel"
+             style="--bg:url('media/seccion1.png');">
+      <div class="panel-inner">
+        <header class="panel-header"><h2>Educación &amp; Experiencia</h2></header>
+
+        <div class="panel-content grid-areas">
+          <section class="col edu" aria-labelledby="edu-title">
+            <h3 id="edu-title">Educación</h3>
+            <ul class="edu-list">
+              <li><strong>2019–2023</strong> · Grado en Bellas Artes — UPV</li>
+              <li><strong>2023–2024</strong> · Máster IFAB de Tecnologías Interactivas y Fabricación Digital — UPV</li>
+              <li><strong>2024-2025</strong> · Curso “Emprendimiento con éxito, según la metodología de MIT” - Las Naves</li>
+              <li><strong>2025</strong> · Programa Emprendimiento en Videojuegos Valencia FSE + Coworking</li>
+            </ul>
+          </section>
+
+          <section class="col exp" aria-labelledby="exp-title">
+            <h3 id="exp-title">Experiencia</h3>
+            <p>Actualmente, formo parte de un equipo de desarrollo donde estamos creando una experiencia de Realidad Virtual que explora la cultura y tradición de las Fallas de Valencia.</p>
+          </section>
+
+          <section class="col more" aria-labelledby="more-title">
+            <h3 id="more-title">Un poco más sobre mí</h3>
+
+            <h4>Idiomas</h4>
+            <ul class="chip-list"><li>Español</li><li>Valenciano/Catalán</li><li>Inglés</li></ul>
+
+            <h4>Soft skills</h4>
+            <ul class="chip-list"><li>Dirección de arte</li><li>Comunicación visual</li><li>Organización</li><li>Resolución creativa</li><li>Desarrollo empresarial</li><li>Adaptabilidad</li><li>Capacidad de aprendizaje</li></ul>
+
+            
+          </section>
+
+          <footer class="panel-cta">
+            <a href="https://drive.google.com/uc?export=download&id=1Fsjn-_XzuQ9BULqhzfKDTcqIasHhNJR7" class="btn-cta" download>Descargar portfolio</a>
+            <a href="https://drive.google.com/uc?export=download&id=1Srb-ggRB0j5CPYFnx0l-f6Qwm8UWGMn_" class="btn-cta btn-outline" download>Descargar currículum</a>
+          </footer>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+  <a href="minigame.html">
+  <img src="media/bocadillo.png" alt="" class="bocadillo" loading="lazy" decoding="async">
+  <img src="media/yo.gif" alt="Yo" class="main-img">
+</a>
+
+  <!-- ===== JS ===== -->
+<script>
+const isPhone = () =>
+  window.matchMedia && window.matchMedia('(max-width: 576px)').matches;
+
+/* Util: insertar un hermano justo después de un nodo */
+function insertAfter(newNode, referenceNode){
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+// ===========================
+// 1) Core: navH + parallax
+// ===========================
+(function () {
+  const nav    = document.querySelector('nav:not(#mobileOverlay)');
+  const stack  = document.getElementById('parallax');
+  const vp     = stack ? stack.querySelector('.parallax-viewport') : null;
+  const panels = vp ? Array.from(vp.querySelectorAll('.panel')) : [];
+
+  function setNavVar() {
+    const navH = nav ? nav.offsetHeight : 0;
+    document.documentElement.style.setProperty('--navH', navH + 'px');
+  }
+
+  // Escritorio/tablet: parallax con translateY; móvil: todo quieto
+  function desktopParallaxOnScroll() {
+    if (!stack || !panels.length) return;
+
+    if (isPhone()) {
+      panels.forEach(p => (p.style.transform = 'none'));
+      return;
+    }
+
+    const rect  = stack.getBoundingClientRect();
+    const navH  = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--navH')
+    ) || 0;
+    const usable   = Math.max(1, window.innerHeight - navH);
+    const scrolled = Math.min(Math.max(-rect.top, 0), panels.length * usable);
+
+    panels.forEach((panel, i) => {
+      const start = i * usable;
+      const end   = (i + 1) * usable;
+      let t = 0;
+      if (scrolled <= start) t = 0;
+      else if (scrolled >= end) t = 1;
+      else t = (scrolled - start) / (end - start);
+      panel.style.transform = `translateY(${-t * 100}%)`;
+    });
+  }
+
+  // ===== MODO MÓVIL: el about queda FIXED detrás, sin desplazar nada
+  // (se crea un "ghost" con la MISMA altura para mantener el flujo)
+  function applyAboutAsFixedBackground(){
+    const about = document.getElementById('about-pin');
+    if (!about) return;
+
+    const GHOST_ID = 'about-ghost';
+    let ghost = document.getElementById(GHOST_ID);
+
+    if (isPhone()) {
+      // crea ghost si no existe
+      if (!ghost){
+        ghost = document.createElement('div');
+        ghost.id = GHOST_ID;
+        insertAfter(ghost, about);
+      }
+      // altura del ghost = alto visible del viewport (para no mover nada)
+      const h = window.innerHeight || document.documentElement.clientHeight || 0;
+      ghost.style.height = h + 'px';
+
+      // fija el about como fondo
+      about.classList.add('about-fixed');
+    } else {
+      // limpia en desktop/tablet
+      about.classList.remove('about-fixed');
+      if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+    }
+  }
+
+  // ===== MODO MÓVIL: parallax sin sticky/scroll interno
+  function applyMobileParallaxMode() {
+    if (!vp) return;
+
+    if (isPhone()) {
+      vp.style.position = 'static';
+      vp.style.top      = 'auto';
+      vp.style.height   = 'auto';
+      vp.style.overflow = 'visible';
+
+      panels.forEach(p => {
+        p.style.position  = 'relative';
+        p.style.inset     = 'auto';
+        p.style.transform = 'none';
+      });
+
+      vp.querySelectorAll('.panel-inner').forEach(inner => {
+        inner.style.maxHeight = 'none';
+        inner.style.overflow  = 'visible';
+      });
+    } else {
+      vp.style.position = '';
+      vp.style.top      = '';
+      vp.style.height   = '';
+      vp.style.overflow = '';
+
+      panels.forEach(p => {
+        p.style.position  = '';
+        p.style.inset     = '';
+        p.style.transform = '';
+      });
+
+      vp.querySelectorAll('.panel-inner').forEach(inner => {
+        inner.style.maxHeight = '';
+        inner.style.overflow  = '';
+      });
+    }
+  }
+
+  // Cursor “tap” para el GIF (cosmético)
+  const mainImg = document.querySelector('.main-img');
+  if (mainImg) mainImg.style.cursor = 'pointer';
+
+  // Inits
+  setNavVar();
+  desktopParallaxOnScroll();
+  applyMobileParallaxMode();
+  applyAboutAsFixedBackground();
+
+  // Listeners
+  window.addEventListener('scroll', desktopParallaxOnScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    setNavVar();
+    applyMobileParallaxMode();
+    applyAboutAsFixedBackground(); // re-calcula ghost al rotar/cambiar barra URL
+    desktopParallaxOnScroll();
+  }, { passive: true });
+
+  try {
+    window.matchMedia('(max-width: 576px)').addEventListener('change', () => {
+      applyMobileParallaxMode();
+      applyAboutAsFixedBackground();
+      desktopParallaxOnScroll();
+    });
+  } catch {}
+})();
+
+// ===========================================
+// 2) Menú móvil + swap de fondo (phone="...")
+// ===========================================
+document.addEventListener('DOMContentLoaded', () => {
+  // --- Menú móvil (igual que antes) ---
+  const burgerBtn = document.getElementById('burgerBtn');
+  const overlay   = document.getElementById('mobileOverlay');
+  const closeBtn  = document.getElementById('closeMenu');
+
+  function openMenu() {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+    burgerBtn.setAttribute('aria-expanded','true');
+    burgerBtn.hidden = true;
+  }
+  function closeMenu() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden','true');
+    burgerBtn.setAttribute('aria-expanded','false');
+    burgerBtn.hidden = false;
+  }
+  if (burgerBtn && overlay && closeBtn){
+    burgerBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu(); });
+  }
+
+  // --- Swap de fondo robusto para móvil ---
+  const mqPhone = window.matchMedia('(max-width: 576px)');
+  const panels  = document.querySelectorAll('.parallax-stack .panel');
+
+  function getDesktopBg(panel){
+    // Intenta inline primero; si no, computed style
+    return panel.style.getPropertyValue('--bg').trim() ||
+           getComputedStyle(panel).getPropertyValue('--bg').trim();
+  }
+
+  function applyPanelBg(panel){
+    const desktopBg = panel.dataset.bgDefault || getDesktopBg(panel);
+    const phoneSrc  = panel.getAttribute('phone') || panel.getAttribute('seccion_phone');
+
+    if (mqPhone.matches && phoneSrc){
+      // Pre-carga para evitar parpadeo
+      const img = new Image();
+      img.onload = () => panel.style.setProperty('--bg', `url("${phoneSrc}")`);
+      img.onerror = () => { if (desktopBg) panel.style.setProperty('--bg', desktopBg); };
+      img.src = phoneSrc;
+    } else if (desktopBg){
+      panel.style.setProperty('--bg', desktopBg);
+    }
+  }
+
+  panels.forEach(panel => {
+    // Guarda una copia del fondo de escritorio una sola vez
+    const initial = getDesktopBg(panel);
+    if (initial) panel.dataset.bgDefault = initial;
+    applyPanelBg(panel);
+  });
+
+  // Re-aplica al cambiar el media query (y Safari fallback)
+  try {
+    mqPhone.addEventListener('change', () => panels.forEach(applyPanelBg));
+  } catch {
+    window.addEventListener('resize', () => panels.forEach(applyPanelBg), { passive:true });
+  }
+});
+
+
+</script>
+
+
+
+
+</body>
+</html>

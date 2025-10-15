@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alba Casada</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/bim0due.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+ <video id="bgVideo" muted playsinline preload="metadata">
+    <source src="media/homevideo.mp4" type="video/mp4">
+    Tu navegador no soporta videos en HTML5.
+  </video>
+
+  <!-- Barra de progreso -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Icono y texto de scroll -->
+  <div class="scroll-indicator">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="white" viewBox="0 0 24 24"><path d="M12 21q-.425 0-.713-.288Q11 20.425 11 20V7.825l-4.6 4.6q-.3.3-.712.3-.413 0-.713-.3-.3-.3-.3-.7 0-.4.3-.7l6.3-6.3q.3-.3.7-.3.4 0 .7.3l6.3 6.3q.3.3.3.7 0 .4-.3.7-.3.3-.7.3-.4 0-.7-.3L13 7.825V20q0 .425-.287.712Q12.425 21 12 21Z"/></svg>
+    HAZ SCROLL PARA HACER ZOOM
+  </div>
+
+  <img src="media/albacasada.png" id="tituloPorfolio" alt="Título porfolio" onclick="location.href='projects.html'">
+
+  <div class="menu">
+    <button class="menu-button" onclick="location.href='projects.html'">Proyectos</button>
+    <button class="menu-button" onclick="location.href='about.html'">Sobre mí</button>
+  </div>
+
+  <div class="contact-info">
+    <a href="mailto:albaacc01@gmail.com" target="_blank" class="mail_icon">
+      <div class="mailredondo"></div>
+      <img src="media/mail.png" alt="Email" class="mail_envelope">
+    </a>
+  </div>
+
+  <div id="drag-area" aria-label="Área de arrastre de carpeta">
+    <a href="https://drive.google.com/uc?export=download&id=1Fsjn-_XzuQ9BULqhzfKDTcqIasHhNJR7" class="folderbtn" id="draggable">
+      <img src="media/folder.png" alt="Portfolio">
+    </a>
+  </div>
+
+  <!-- PHONE -->
+
+<header class="mobile-header">
+  <button id="burgerBtn" class="burger" aria-label="Abrir menú" aria-controls="mobileOverlay" aria-expanded="false">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </button>
+</header>
+
+<nav id="mobileOverlay" class="mobile-overlay" aria-hidden="true">
+  <button id="closeMenu" class="close-menu" aria-label="Cerrar menú">
+    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="mobile-menu-content">
+    <button class="mobile-menu-btn" onclick="location.href='projects.html'">Proyectos</button>
+    <button class="mobile-menu-btn" onclick="location.href='about.html'">Sobre mí</button>
+  </div>
+</nav>
+
+  <div class="fondo">
+    <img src="media/fondomobil.png" alt="fondo">
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Obtener nodos con tolerancia ----------
+  const $ = (sel) => document.querySelector(sel);
+  const video           = $("#bgVideo");
+  const progressBar     = $("#progressBar");
+  const tituloPorfolio  = $("#tituloPorfolio");
+  const menu            = $(".menu");
+  const folderBtn       = $("#draggable");
+  const scrollIndicator = $(".scroll-indicator");
+  const area            = $("#drag-area");
+
+  const burgerBtn = $("#burgerBtn");
+  const overlay   = $("#mobileOverlay");
+  const closeBtn  = $("#closeMenu");
+
+  // ---------- Utils ----------
+  const clamp = (n, a, b) => Math.max(a, Math.min(n, b));
+  function getScrollFraction() {
+    const st = window.scrollY || document.documentElement.scrollTop || 0;
+    const sh = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    return clamp(st / sh, 0, 1);
+  }
+  function setUIVisibility(show) {
+    if (tituloPorfolio) {
+      tituloPorfolio.style.opacity = show ? "1" : "0";
+      tituloPorfolio.classList.toggle("hoverable", show);
+    }
+    if (menu) menu.classList.toggle("visible", show);
+    if (folderBtn) {
+      folderBtn.style.opacity = show ? "1" : "0";
+      folderBtn.style.pointerEvents = show ? "auto" : "none";
+      folderBtn.classList.toggle("visible", show);
+    }
+    if (scrollIndicator) scrollIndicator.style.opacity = show ? "0" : "1";
+  }
+
+  // ---------- Estado inicial seguro (aunque el vídeo tarde) ----------
+  const initSF = getScrollFraction();
+  if (progressBar) progressBar.style.width = (initSF * 100) + "%";
+  setUIVisibility(initSF > 0.95);
+
+  // ---------- Scrubbing del vídeo con scroll ----------
+  let targetTime = 0, currentTime = 0, haveMeta = false;
+
+  function onScroll() {
+    const sf = getScrollFraction();
+    if (progressBar) progressBar.style.width = (sf * 100) + "%";
+    if (haveMeta && video && Number.isFinite(video.duration)) {
+      targetTime = sf * video.duration;
+    }
+    setUIVisibility(sf > 0.95);
+  }
+
+  function startTicker() {
+    function tick() {
+      if (haveMeta && video && Number.isFinite(video.duration)) {
+        currentTime += (targetTime - currentTime) * 0.1;
+        currentTime = clamp(currentTime, 0, video.duration);
+        try { video.currentTime = currentTime; } catch (_) {}
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (video) {
+    try { video.pause(); } catch (_) {}
+    // Si el navegador ya conoce la metadata (p. ej., navegaciones posteriores)
+    if (Number.isFinite(video.duration) && video.duration > 0) {
+      haveMeta = true;
+      onScroll();
+      startTicker();
+    } else {
+      video.addEventListener("loadedmetadata", () => {
+        haveMeta = true;
+        onScroll();
+        startTicker();
+      }, { once: true });
+      // Fallback: si falla el vídeo, que no rompa nada
+      video.addEventListener("error", () => { haveMeta = false; }, { once: true });
+    }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // ---------- Drag & Drop carpeta ----------
+  if (folderBtn && area) {
+    let isDragging = false, moved = false, mouseDownTime = 0;
+    let offsetX = 0, offsetY = 0, startX = 0, startY = 0;
+
+    folderBtn.addEventListener("click", (e) => e.preventDefault());
+
+    folderBtn.addEventListener("mousedown", (e) => {
+      if (folderBtn.style.pointerEvents === "none") return;
+      e.preventDefault();
+      isDragging = true; moved = false; mouseDownTime = Date.now();
+      startX = e.clientX; startY = e.clientY;
+
+      const r = folderBtn.getBoundingClientRect();
+      offsetX = e.clientX - r.left;
+      offsetY = e.clientY - r.top;
+
+      folderBtn.classList.add("dragging");
+      folderBtn.style.cursor = "grabbing";
+      document.body.style.userSelect = "none";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      if (Math.abs(e.clientX - startX) > 5 || Math.abs(e.clientY - startY) > 5) moved = true;
+
+      const areaRect = area.getBoundingClientRect();
+      const maxLeft = area.clientWidth  - folderBtn.clientWidth;
+      const maxTop  = area.clientHeight - folderBtn.clientHeight;
+
+      let newLeft = e.clientX - areaRect.left - offsetX;
+      let newTop  = e.clientY - areaRect.top  - offsetY;
+
+      newLeft = clamp(newLeft, 0, Math.max(0, maxLeft));
+      newTop  = clamp(newTop,  0, Math.max(0, maxTop));
+
+      folderBtn.style.left = newLeft + "px";
+      folderBtn.style.top  = newTop  + "px";
+    });
+
+    document.addEventListener("mouseup", () => {
+      if (!isDragging) return;
+      isDragging = false;
+      folderBtn.classList.remove("dragging");
+      folderBtn.style.cursor = "grab";
+      document.body.style.userSelect = "";
+
+      const clickDuration = Date.now() - mouseDownTime;
+      if (!moved && clickDuration < 200) {
+        const url = folderBtn.getAttribute("href");
+        if (url) {
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "portfolio.pdf";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+      }
+    });
+
+    // Re-clamp al redimensionar
+    function clampToArea() {
+      const maxLeft = area.clientWidth  - folderBtn.clientWidth;
+      const maxTop  = area.clientHeight - folderBtn.clientHeight;
+      const left = clamp(parseFloat(folderBtn.style.left || "0"), 0, Math.max(0, maxLeft));
+      const top  = clamp(parseFloat(folderBtn.style.top  || "0"), 0, Math.max(0, maxTop));
+      folderBtn.style.left = left + "px";
+      folderBtn.style.top  = top  + "px";
+    }
+    window.addEventListener("resize", clampToArea);
+
+    // Hint inicial una única vez
+    try {
+      if (!sessionStorage.getItem("folder_seen")) {
+        folderBtn.classList.add("attention", "show-hint");
+        setTimeout(() => folderBtn.classList.remove("show-hint"), 2200);
+      }
+      ["mouseenter","mousedown","touchstart","click"].forEach(ev => {
+        folderBtn.addEventListener(ev, () => {
+          folderBtn.classList.remove("attention","show-hint");
+          try { sessionStorage.setItem("folder_seen", "1"); } catch (_) {}
+        }, { once: true });
+      });
+    } catch (_) {}
+  }
+
+  // ---------- Menú móvil ----------
+  if (burgerBtn && overlay && closeBtn) {
+    function openMenu() {
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+      burgerBtn.setAttribute("aria-expanded", "true");
+      overlay.style.opacity = "1";
+      overlay.style.pointerEvents = "auto";
+      overlay.style.display = "flex";
+      burgerBtn.hidden = true;
+    }
+    function closeMenu() {
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+      burgerBtn.setAttribute("aria-expanded", "false");
+      overlay.style.opacity = "";
+      overlay.style.pointerEvents = "";
+      overlay.style.display = "";
+      burgerBtn.hidden = false;
+    }
+    burgerBtn.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeMenu(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && overlay.classList.contains("open")) closeMenu(); });
+  }
+})();
+</script>
+
+
+</body>
+</html>

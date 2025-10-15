@@ -1,0 +1,342 @@
+:root {
+  --navH: 72px;
+}
+
+/* ===========================
+   Reset
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff3c6;
+  color: #000;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* ===========================
+   NAV fija
+=========================== */
+nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  padding: 1.2rem 2rem;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 5px rgba(186,151,36,.1);
+  z-index: 3000;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ff63cb;
+  transition: color .3s;
+  font-family: "gambado-sans-forte", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.2rem;
+}
+
+nav a:hover {
+  color: #ff3399;
+}
+
+/* ===========================
+   Layout principal
+=========================== */
+main {
+  padding: calc(var(--navH) + 24px) 20px 56px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Cabecera
+=========================== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.name-banner {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  width: min(950px, 100%);
+  height: auto;
+  display: block;
+  animation: fadeBounce 2s infinite;
+}
+
+@keyframes fadeBounce {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(0, -8px); }
+}
+
+.lead {
+  max-width: 68ch;
+  font-size: 1rem;
+}
+
+/* ===========================
+   Iconos (sin texto)
+=========================== */
+.contact {
+  margin-block: 0.75rem 0.5rem;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  padding: .5rem;
+  border-radius: .8rem;
+  transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.contact-item:hover,
+.contact-item:focus-visible {
+  background: #fce6966c;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.contact-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex: 0 0 30px;
+}
+
+/* ===========================
+   Galería (3 proyectos)
+=========================== */
+.gallery {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tile {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(8, 0, 255, 0.10);
+  isolation: isolate;
+  background: #ddd;
+}
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .35s ease, filter .35s ease;
+  will-change: transform, filter;
+}
+
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ff00bf;
+  mix-blend-mode: color;
+  opacity: 0;
+  transition: opacity .35s ease;
+  z-index: 1;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+  background: linear-gradient(to top, rgba(8, 4, 207, 0.35), rgba(0,0,0,0) 70%);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .35s ease, transform .35s ease;
+  z-index: 2;
+}
+
+.tile:hover img,
+.tile:focus-within img {
+  transform: scale(1.03);
+  filter: saturate(1.05);
+}
+
+.tile:hover::after,
+.tile:focus-within::after {
+  opacity: 1;
+}
+
+.tile:hover .caption,
+.tile:focus-within .caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tile a {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 14px;
+}
+
+.tile a:focus-visible {
+  outline: 3px solid #ff63cb;
+  outline-offset: 2px;
+}
+
+/* ===========================
+   Accesibilidad: reducir movimiento
+=========================== */
+@media (prefers-reduced-motion: reduce) {
+  .tile img,
+  .tile::after,
+  .caption {
+    transition: none;
+  }
+}
+
+/* ===========================
+   Menú móvil (oculto por defecto)
+=========================== */
+.mobile-header,
+.mobile-overlay {
+  display: none;
+}
+
+/* ===========================
+   Responsive ≤ 720px
+=========================== */
+@media (max-width: 720px) {
+
+  /* Galería: 1 por fila */
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Ocultar barra fija */
+  nav {
+    display: none;
+  }
+
+  /* Ajustar padding de main */
+  main {
+    padding: 24px 20px 56px;
+  }
+
+  /* Botón burger */
+  .mobile-header {
+    position: fixed;
+    top: 2%;
+    right: 5%;
+    z-index: 130;
+    display: block;
+  }
+
+  .burger {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .burger svg path {
+    stroke: #ff56d7;
+  }
+
+  /* Overlay a pantalla completa */
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: #ffe44b;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+  }
+
+  .mobile-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Botón cerrar (X) */
+  .close-menu {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border: none;
+    background: none;
+    color: #ff56d7;
+    cursor: pointer;
+    z-index: 140;
+  }
+
+  .close-menu svg path {
+    stroke: #ff56d7;
+  }
+
+  /* Contenido del menú */
+  .mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mobile-menu-btn {
+    padding: 16px 18px;
+    border: none;
+    border-radius: 16px;
+    background: #ff56d7;
+    color: #fff;
+    font-size: 1.25rem;
+    font-family: "gambado-sans-forte", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}

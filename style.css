@@ -1,0 +1,504 @@
+/* =========================================
+   RESET
+========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 200vh; /* scroll de prueba */
+  font-family: sans-serif;
+  color: rgb(255, 188, 235);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================
+   VIDEO DE FONDO
+========================================= */
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* =========================================
+   BARRA DE PROGRESO
+========================================= */
+.progress-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 200px;
+  height: 10px;
+  background: rgba(255, 255, 255, .2);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: rgb(255, 212, 70);
+  transition: width .1s linear;
+}
+
+.progress-bar:hover {
+  background: #fff;
+}
+
+/* =========================================
+   ICONO SCROLL
+========================================= */
+.scroll-indicator {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1rem;
+  color: #fff;
+  animation: fadeBounce 2s infinite;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.scroll-indicator svg {
+  display: block;
+  margin: 0 auto 5px;
+}
+
+@keyframes fadeBounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, -8px); }
+}
+
+/* =========================================
+   TÍTULO
+========================================= */
+#tituloPorfolio {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity .3s ease, transform .3s ease;
+  cursor: pointer;
+  width: 650px;
+  pointer-events: none;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, -55%); }
+  50%      { transform: translate(-50%, -50%); }
+}
+
+#tituloPorfolio.hoverable {
+  pointer-events: auto;
+}
+
+#tituloPorfolio:hover {
+  transform: translate(-50%, -50%) rotateX(15deg) rotateY(15deg);
+}
+
+/* =========================================
+   MENÚ
+========================================= */
+.menu {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 20;
+}
+
+.menu.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-button {
+  background: rgba(255, 255, 255, .2);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-family: "gambado-sans-forte", sans-serif;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+  transition: background .2s;
+}
+
+.menu-button:hover {
+  background: #ff56d7;
+  color: #fff;
+}
+
+/* =========================================
+   MAIL
+========================================= */
+.contact-info {
+  position: fixed;
+  bottom: 15px;
+  left: 30px;
+  z-index: 30;
+}
+
+.mail_icon {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.mailredondo {
+  width: 100px;
+  height: 100px;
+  background: url("media/mailRedondo.png") no-repeat center/cover;
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0); }
+  to   { transform: rotate(360deg); }
+}
+
+.mail_envelope {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  transition: transform .3s ease;
+}
+
+.mail_envelope:hover {
+  transform: translate(-50%, -50%) scale(1.1) rotate(-5deg);
+}
+
+/* =========================================
+   ÁREA DE ARRASTRE (base)
+========================================= */
+#drag-area {
+  position: fixed;
+  left: 50%;
+  top: 55%;
+  width: 45vw;
+  aspect-ratio: 752 / 570;
+  height: auto;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Carpeta dentro del área */
+:root {
+  --folder-size: 160px;
+  --folder-offset: 10%;
+}
+
+.folderbtn {
+  position: absolute;
+  left: calc(100% - var(--folder-offset) - var(--folder-size));
+  top:  calc(100% - var(--folder-offset) - var(--folder-size));
+  width: var(--folder-size);
+  height: var(--folder-size);
+  opacity: 0;
+  pointer-events: none;
+  cursor: grab;
+  z-index: 50;
+  transition: opacity .3s ease, transform .1s ease;
+}
+
+.folderbtn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.folderbtn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.folderbtn:not(.dragging):hover img {
+  transform: scale(1.06) rotate(-3deg);
+}
+
+.folderbtn::after {
+  content: "Arrástrame <3";
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  transform: translate(-50%, -4px);
+  padding: 8px 12px;
+  font: 600 12px/1 "Poppins", sans-serif;
+  color: #9c4ac6;
+  background: rgba(255, 255, 255, .85);
+  border: 2px solid #c9b3ff;
+  border-radius: 12px;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.folderbtn:hover::after,
+.folderbtn:focus-visible::after,
+.folderbtn.show-hint::after {
+  opacity: 1;
+  transform: translate(-50%, -10px);
+}
+
+/* =========================================
+   MÓVIL (<=576px) — Home sin scroll + menú
+========================================= */
+@media (max-width: 576px) {
+
+  /* Sin scroll en móvil (svh arregla iOS) */
+  html,
+  body {
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  /* Oculta elementos desktop */
+  video,
+  .progress-container,
+  .scroll-indicator,
+  #drag-area,
+  .menu {
+    display: none !important;
+  }
+
+  /* Fondo a pantalla completa detrás de todo */
+  .fondo {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: block;
+  }
+
+  .fondo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* “Alba Casada”: siempre visible */
+  #tituloPorfolio {
+    position: fixed;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    width: min(60vw, 600px);
+    height: auto;
+    z-index: 10;
+    opacity: 1 !important;
+  }
+
+  /* Icono mail abajo a la izquierda */
+  .contact-info {
+    position: fixed;
+    left: 5%;
+    bottom: 3%;
+    z-index: 90;
+  }
+
+  .contact-info .mail_icon { width: 90px; height: 90px; }
+  .contact-info .mailredondo { width: 90px; height: 90px; }
+  .contact-info .mail_envelope { width: 45px; height: 45px; }
+
+  /* Header con hamburguesa arriba derecha */
+  .mobile-header {
+    position: fixed;
+    top: 2%;
+    right: 5%;
+    z-index: 130;
+    display: block;
+  }
+
+  .burger {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .burger svg path {
+    stroke: #fff;
+  }
+
+  /* Overlay amarillo a pantalla completa con los botones */
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: #ffe44b;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+  }
+
+  .mobile-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Botón cerrar (X) */
+  .close-menu {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border: none;
+    background: none;
+    color: #ff56d7;
+    cursor: pointer;
+    z-index: 140;
+  }
+
+  .close-menu svg path {
+    stroke: #ff56d7;
+  }
+
+  /* Contenido del menú (los dos botones) */
+  .mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mobile-menu-btn {
+    padding: 16px 18px;
+    border: none;
+    border-radius: 16px;
+    background: #ff56d7;
+    color: #fff;
+    font-size: 1.25rem;
+    font-family: "gambado-sans-forte", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* Bloqueo extra opcional al abrir menú */
+  body.lock-scroll {
+    overflow: hidden;
+  }
+}
+
+/* =========================================
+   >=577px (agrupado)
+   - Oculta UI móvil en grandes
+   - Mantiene visibles título y mail
+========================================= */
+@media (min-width: 577px) {
+
+  .mobile-header,
+  .mobile-overlay,
+  .fondo {
+    display: none !important;
+  }
+
+  #tituloPorfolio {
+    display: block;
+  }
+
+  .contact-info {
+    display: block;
+  }
+}
+
+/* =========================================
+   577px–1024px (Tablet)
+========================================= */
+@media (min-width: 577px) and (max-width: 1024px) {
+
+  #drag-area {
+    width: 65vw; /* tu idea original para tablet */
+  }
+
+  .folderbtn {
+    width: 105px;
+    height: 105px;
+    left: calc(100% - 8% - 105px);
+    top:  calc(100% - 8% - 105px);
+  }
+
+  #tituloPorfolio {
+    width: 450px;
+  }
+}
+
+/* =========================================
+   1025–1499px (Portátil pequeño)
+========================================= */
+@media (min-width: 1025px) and (max-width: 1499px) {
+
+  #drag-area {
+    width: 48vw;
+  }
+
+  .folderbtn {
+    width: 120px;
+    height: 120px;
+    left: calc(100% - 5% - 120px);
+    top:  calc(100% - 5% - 120px);
+  }
+
+  #tituloPorfolio {
+    width: 450px;
+  }
+}
+
+/* =========================================
+   1500–1799px
+========================================= */
+@media (min-width: 1500px) and (max-width: 1799px) {
+
+  #drag-area {
+    width: 48vw;
+  }
+
+  .folderbtn {
+    width: 120px;
+    height: 120px;
+    left: calc(100% - 5% - 120px);
+    top:  calc(100% - 5% - 120px);
+  }
+
+  #tituloPorfolio {
+    width: 450px;
+  }
+}

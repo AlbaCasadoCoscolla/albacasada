@@ -1,0 +1,648 @@
+/* ===========================
+   VARIABLES BÁSICAS
+=========================== */
+:root {
+  --paper: #ffffff;
+  --ink: #111;
+  --accent: #2acaff;
+  --navH: 72px;
+  --radius: 16px;
+
+  --space-1: 10px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 36px;
+  --space-5: 54px;
+  --gutter: 24px;
+}
+
+/* ===========================
+   RESET
+=========================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===========================
+   NAV FIJA
+=========================== */
+nav.primary {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--navH);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  padding: 0 var(--gutter);
+  background: var(--accent);
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(71, 184, 255, 0.3);
+}
+nav.primary a {
+  text-decoration: none;
+  color: #fff;
+  font-family: "gambado-sans-forte", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: opacity .2s ease;
+}
+nav.primary a:hover {
+  opacity: .85;
+}
+
+/* ===========================
+   LAYOUT PRINCIPAL
+=========================== */
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: calc(var(--navH) + 12px) var(--gutter) var(--space-5);
+}
+
+/* ===========================
+   HERO (logo centrado + grid)
+=========================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.cover {
+  width: 60%;
+  height: auto;
+  display: grid;
+  place-items: center;
+  margin: 5% auto 0;
+}
+.cover img {
+  width: min(60%, 500px);
+  height: auto;
+  display: block;
+}
+
+/* grid texto izq / imagen dcha */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: var(--space-3);
+  align-items: start;
+  justify-items: start;
+}
+@media (max-width: 880px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* texto */
+.summary {
+  max-width: 65ch;
+  display: grid;
+  gap: var(--space-2);
+  text-align: left;
+  justify-items: start;
+}
+.summary .description {
+  font-size: clamp(1.08rem, 2.2vw, 1.22rem);
+}
+.summary .lead {
+  font-size: clamp(1rem, 2vw, 1.08rem);
+  color: var(--ink);
+}
+
+/* badges/software */
+.meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: var(--space-1);
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(8,0,255,.08);
+  font-size: .95rem;
+  color: black;
+  font-weight: bold;
+}
+.badge img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* imagen derecha del hero */
+.hero-right {
+  width: 100%;
+}
+.hero-render,
+.hero-render img,
+.hero-render video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ===========================
+   LAS CASAS (seis avatares)
+=========================== */
+.houses {
+  margin-top: var(--space-5);
+}
+.houses h2,
+.ek-finales-title {
+  font-family: "gambado-sans-forte", sans-serif;
+  font-size: clamp(22px, 3vw, 32px);
+  margin-bottom: var(--space-2);
+  color: var(--accent);
+}
+
+.houses-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-2);
+}
+@media (max-width: 1024px) {
+  .houses-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .houses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.casa-card {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
+  padding: 12px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+.casa-card .avatar {
+  width: 150px;
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0,0,0,.08);
+}
+.casa-card .avatar img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.casa-card h3 {
+  font-size: 1.05rem;
+}
+.casa-card p {
+  font-size: .92rem;
+  color: #444;
+}
+.casa-card button {
+  margin-top: 6px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
+/* ===========================
+   VISOR DE COLECCIONES (modal)
+=========================== */
+.collectionbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: rgba(0,0,0,.64);
+  backdrop-filter: blur(2px);
+  z-index: 50;
+}
+.collectionbox.open {
+  display: grid;
+}
+
+.cb-frame {
+  position: relative;
+  width: min(96vw, 1100px);
+  max-height: 96vh;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.cb-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.cb-title {
+  display: grid;
+  gap: 2px;
+}
+.cb-title .name {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+.cb-title .desc {
+  color: #555;
+  font-size: .92rem;
+}
+
+.cb-set {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  cursor: pointer;
+  font-size: 20px;
+}
+.cb-close {
+  margin-left: 6px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cb-viewport {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: 10px;
+}
+.cb-viewport .img-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  cursor: pointer;
+  font-size: 22px;
+}
+.cb-viewport .img-nav.prev {
+  left: 6px;
+}
+.cb-viewport .img-nav.next {
+  right: 6px;
+}
+.cb-img {
+  max-width: 100%;
+  max-height: calc(96vh - 200px);
+  border-radius: 12px;
+}
+
+.cb-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0 14px;
+}
+.cb-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #ddd;
+  border: none;
+}
+.cb-dot[aria-current="true"] {
+  background: #111;
+}
+
+/* ===========================
+   FOTOS FINALES (galería + lightbox)
+=========================== */
+.ek-finales {
+  margin-top: 56px;
+}
+.ek-finales-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.ek-finales-grid figure {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+.ek-finales-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* ===========================
+   LIGHTBOX (reutilizado)
+=========================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: saturate(1.1) blur(2px);
+  z-index: 40;
+}
+.lightbox.open {
+  display: grid;
+}
+.lb-frame {
+  position: relative;
+  width: min(96vw, 1100px);
+  max-height: 96vh;
+}
+.lb-img {
+  width: auto;
+  margin: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
+  object-fit: contain;
+  border-radius: 16px;
+  display: block;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+.lb-close,
+.lb-prev,
+.lb-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  font-size: 22px;
+}
+.lb-close {
+  top: 8px;
+  right: 8px;
+  transform: none;
+}
+.lb-prev {
+  left: -54px;
+}
+.lb-next {
+  right: -54px;
+}
+
+/* ===========================
+   FLECHAS ENTRE PROYECTOS
+=========================== */
+.proj-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+  z-index: 35;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.proj-nav[hidden] {
+  display: none !important;
+}
+.proj-nav:hover {
+  transform: translateY(-50%) scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,.22);
+}
+.proj-prev {
+  left: 14px;
+}
+.proj-next {
+  right: 14px;
+}
+.proj-nav .arrow {
+  font-size: 22px;
+  line-height: 1;
+}
+.proj-tooltip {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+  background: #fff;
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  padding: 8px 10px;
+  font-size: .92rem;
+  font-weight: 600;
+  border: 1px solid rgba(0,0,0,.06);
+}
+.proj-prev .proj-tooltip {
+  left: 56px;
+  transform: translate(0,-50%);
+}
+.proj-next .proj-tooltip {
+  right: 56px;
+  transform: translate(0,-50%);
+}
+
+/* ===========================
+   MENÚ MÓVIL + AJUSTES MÓVIL
+=========================== */
+.mobile-header,
+.mobile-overlay {
+  display: none;
+}
+
+/* =======================================================
+   BLOQUE ÚNICO: @media (max-width: 720px)
+   (todo lo móvil consolidado aquí)
+======================================================= */
+@media (max-width: 720px) {
+
+  /* nav oculto + padding */
+  nav.primary {
+    display: none;
+  }
+  main {
+    padding: var(--space-2) var(--gutter) var(--space-5);
+  }
+
+  /* burger + overlay */
+  .mobile-header {
+    position: fixed;
+    top: 10px;
+    right: 12px;
+    z-index: 130;
+    display: block;
+  }
+  .burger {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255,255,255,.72);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  }
+  .burger svg path {
+    stroke: #ff56d7;
+  }
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffe44b;
+    z-index: 999;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+    box-sizing: border-box;
+  }
+  .mobile-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .close-menu {
+    position: fixed;
+    top: 10px;
+    right: 12px;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border: none;
+    background: none;
+    color: #ff56d7;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: min(90vw, 420px);
+  }
+  .mobile-menu-btn {
+    padding: 16px 18px;
+    border: none;
+    border-radius: 16px;
+    background: #ff56d7;
+    color: #fff;
+    font-size: 1.25rem;
+    font-family: "gambado-sans-forte", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* visor colecciones: flechas dentro */
+  .cb-viewport .img-nav {
+    top: auto;
+    bottom: 10px;
+    transform: none;
+  }
+
+  /* lightbox genérico: flechas más dentro */
+  .lb-prev {
+    left: 8px;
+  }
+  .lb-next {
+    right: 8px;
+  }
+
+  /* eklektik: logo más grande en móvil */
+  body[data-project-slug="eklektik"] .cover {
+    width: 88%;
+  }
+  body[data-project-slug="eklektik"] .cover img {
+    width: min(88%, 640px);
+  }
+
+  /* fotos definitivas: una por fila + centradas */
+  .ek-finales-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--space-2);
+  }
+  .ek-finales-grid figure {
+    width: min(94vw, 720px);
+  }
+  .ek-finales-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+}

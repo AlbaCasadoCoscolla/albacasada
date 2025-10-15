@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alba Casada</title>
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/bim0due.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="minigame.css" />
+</head>
+<body>
+  <div class="bg-image" aria-hidden="true"></div>
+
+  <!-- Pantalla de portada -->
+  <div id="loading-screen" aria-hidden="true">
+    <img id="loading-cover" src="media/portada_carga.png" alt="Pantalla de portada" />
+  </div>
+
+  <div class="app">
+    <header>
+      <a class="exit-btn" id="btnExit" href="about.html" title="Salir"></a>
+    </header>
+
+    <main class="container" id="appRoot">
+      <!-- IZQUIERDA: Avatar + capas -->
+      <section class="avatar-pane">
+        <div class="avatar-stage" id="avatarStage" aria-live="polite">
+          <div class="avatar-inner">
+            <img id="avatarBase" class="base" alt="Avatar" src="media/ropa/base.PNG" />
+            <img id="layerTop" class="overlay-item" alt="Top seleccionado" />
+            <img id="layerBottom" class="overlay-item" alt="Bottom seleccionado" />
+          </div>
+        </div>
+
+        <!-- FLECHAS (solo móvil/tablet; ocultas en escritorio por CSS) -->
+        <div class="mobile-arrows" aria-hidden="true">
+          <div class="arrow-col left">
+            <!-- Top anterior -->
+            <button id="btnPrevTop" class="arrow-btn" aria-label="Top anterior">
+              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <!-- Bottom anterior -->
+            <button id="btnPrevBottom" class="arrow-btn" aria-label="Bottom anterior">
+              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="arrow-col right">
+            <!-- Top siguiente -->
+            <button id="btnNextTop" class="arrow-btn" aria-label="Top siguiente">
+              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <!-- Bottom siguiente -->
+            <button id="btnNextBottom" class="arrow-btn" aria-label="Bottom siguiente">
+              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="left-controls">
+          <button id="btnRandom" title="Ir random">RANDOM</button>
+          <button id="btnReset"  title="Quitar ropa">RESET</button>
+        </div>
+      </section>
+
+      <!-- DERECHA: Guardarropa (oculto en móvil/tablet por CSS) -->
+      <aside class="wardrobe" id="wardrobe">
+        <div class="rack" id="rackTops" role="region" aria-label="Tops">
+          <h3 class="rack-title">Tops</h3>
+          <button class="thumb" data-type="top" data-index="0" aria-label="top 1">
+            <img alt="top 1" src="media/ropa/top1.PNG" />
+          </button>
+          <button class="thumb" data-type="top" data-index="1" aria-label="top 2">
+            <img alt="top 2" src="media/ropa/top2.PNG" />
+          </button>
+          <button class="thumb" data-type="top" data-index="2" aria-label="top 3">
+            <img alt="top 3" src="media/ropa/top3.PNG" />
+          </button>
+          <button class="thumb" data-type="top" data-index="3" aria-label="top 4">
+            <img alt="top 4" src="media/ropa/top4.PNG" />
+          </button>
+        </div>
+
+        <div class="rack" id="rackBottoms" role="region" aria-label="Bottoms">
+          <h3 class="rack-title">Bottoms</h3>
+          <button class="thumb" data-type="bottom" data-index="0" aria-label="bottom 1">
+            <img alt="bottom 1" src="media/ropa/bottom1.PNG" />
+          </button>
+          <button class="thumb" data-type="bottom" data-index="1" aria-label="bottom 2">
+            <img alt="bottom 2" src="media/ropa/bottom2.PNG" />
+          </button>
+          <button class="thumb" data-type="bottom" data-index="2" aria-label="bottom 3">
+            <img alt="bottom 3" src="media/ropa/bottom3.PNG" />
+          </button>
+          <button class="thumb" data-type="bottom" data-index="3" aria-label="bottom 4">
+            <img alt="bottom 4" src="media/ropa/bottom4.PNG" />
+          </button>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+// ========= Config =========
+const EXIT_URL = 'about.html';
+
+// Si quieres, rutas por defecto para miniaturas (si "" usa las del HTML)
+const DEFAULT_TOPS = ["", "", "", ""];
+const DEFAULT_BOTTOMS = ["", "", "", ""];
+
+// ========= Referencias al DOM =========
+const els = {
+  rackTops: document.getElementById('rackTops'),
+  rackBottoms: document.getElementById('rackBottoms'),
+  layerTop: document.getElementById('layerTop'),
+  layerBottom: document.getElementById('layerBottom'),
+  btnRandom: document.getElementById('btnRandom'),
+  btnReset: document.getElementById('btnReset'),
+  btnExit: document.getElementById('btnExit'),
+  loading: document.getElementById('loading-screen'),
+  avatarStage: document.getElementById('avatarStage'),
+  loadingCover: document.getElementById('loading-cover'),
+
+  // Flechas móviles (pueden no existir en desktop; no pasa nada)
+  btnPrevTop: document.getElementById('btnPrevTop'),
+  btnNextTop: document.getElementById('btnNextTop'),
+  btnPrevBottom: document.getElementById('btnPrevBottom'),
+  btnNextBottom: document.getElementById('btnNextBottom'),
+};
+
+let currentTop = null, currentBottom = null;
+
+// ========= Utiles =========
+const isMobile = () =>
+  window.matchMedia && window.matchMedia('(max-width: 980px)').matches;
+
+// Devuelve lista de srcs para un tipo leyendo del rack (fallback a DEFAULTS/HTML)
+function getList(type) {
+  const rack = type === 'top' ? els.rackTops : els.rackBottoms;
+  const defaults = type === 'top' ? DEFAULT_TOPS : DEFAULT_BOTTOMS;
+
+  const items = [];
+  if (rack) {
+    rack.querySelectorAll('.thumb img').forEach(img => {
+      if (img && img.src) items.push(img.src);
+    });
+  }
+  // Relleno con defaults si hay rutas personalizadas
+  defaults.forEach((src, i) => {
+    if (src) items[i] = src;
+  });
+
+  return items.filter(Boolean);
+}
+
+function highlightSelection(rackEl, index){
+  if (!rackEl) return;
+  [...rackEl.querySelectorAll('.thumb')].forEach((el, i)=>{
+    el.classList.toggle('selected', i === index);
+  });
+}
+
+function setTopByIndex(i){
+  const list = getList('top');
+  if (!list.length) return;
+  currentTop = ((i % list.length) + list.length) % list.length;
+  if (els.layerTop) els.layerTop.src = list[currentTop];
+  highlightSelection(els.rackTops, currentTop);
+}
+
+function setBottomByIndex(i){
+  const list = getList('bottom');
+  if (!list.length) return;
+  currentBottom = ((i % list.length) + list.length) % list.length;
+  if (els.layerBottom) els.layerBottom.src = list[currentBottom];
+  highlightSelection(els.rackBottoms, currentBottom);
+}
+
+function stepTop(dir){             // dir: +1 siguiente, -1 anterior
+  const list = getList('top');
+  if (!list.length) return;
+  if (currentTop == null) currentTop = 0;
+  setTopByIndex(currentTop + dir);
+}
+
+function stepBottom(dir){
+  const list = getList('bottom');
+  if (!list.length) return;
+  if (currentBottom == null) currentBottom = 0;
+  setBottomByIndex(currentBottom + dir);
+}
+
+// ========= Preload + listeners de thumbnails =========
+(function preloadThumbs() {
+  if (!els.rackTops || !els.rackBottoms) return;
+
+  const topBtns = els.rackTops.querySelectorAll('.thumb');
+  const bottomBtns = els.rackBottoms.querySelectorAll('.thumb');
+
+  topBtns.forEach((btn, i) => {
+    const img = btn.querySelector('img');
+    if (DEFAULT_TOPS[i]) img.src = DEFAULT_TOPS[i];
+    btn.addEventListener('click', onPickItem);
+  });
+
+  bottomBtns.forEach((btn, i) => {
+    const img = btn.querySelector('img');
+    if (DEFAULT_BOTTOMS[i]) img.src = DEFAULT_BOTTOMS[i];
+    btn.addEventListener('click', onPickItem);
+  });
+})();
+
+function onPickItem(e){
+  const btn = e.currentTarget;
+  const type = btn.dataset.type; // 'top' | 'bottom'
+  const idx = parseInt(btn.dataset.index, 10);
+  const src = btn.querySelector('img')?.src || "";
+
+  if(type === 'top'){
+    currentTop = idx;
+    els.layerTop && (els.layerTop.src = src);
+    highlightSelection(els.rackTops, idx);
+  } else {
+    currentBottom = idx;
+    els.layerBottom && (els.layerBottom.src = src);
+    highlightSelection(els.rackBottoms, idx);
+  }
+}
+
+function randomize(){
+  const tops = getList('top');
+  const bottoms = getList('bottom');
+  if (tops.length)   setTopByIndex(Math.floor(Math.random()*tops.length));
+  if (bottoms.length) setBottomByIndex(Math.floor(Math.random()*bottoms.length));
+}
+
+// ========= RESET =========
+function clearSelected(rackEl){
+  rackEl?.querySelectorAll('.thumb.selected').forEach(el => el.classList.remove('selected'));
+}
+
+function resetOutfit(){
+  currentTop = null;
+  currentBottom = null;
+  els.layerTop?.removeAttribute('src');
+  els.layerBottom?.removeAttribute('src');
+  clearSelected(els.rackTops);
+  clearSelected(els.rackBottoms);
+}
+
+// ========= Inicializar =========
+els.btnRandom?.addEventListener('click', randomize);
+els.btnReset?.addEventListener('click', resetOutfit);
+els.btnExit?.setAttribute('href', EXIT_URL);
+
+// Flechas móviles (arriba = TOPS; abajo = BOTTOMS)
+els.btnPrevTop?.addEventListener('click', () => stepTop(-1));
+els.btnNextTop?.addEventListener('click', () => stepTop(1));
+els.btnPrevBottom?.addEventListener('click', () => stepBottom(-1));
+els.btnNextBottom?.addEventListener('click', () => stepBottom(1));
+
+// Al entrar en móvil por primera vez, si no hay nada seleccionado, coloca el primer item
+(function ensureInitialOnMobile(){
+  const apply = () => {
+    if (isMobile()){
+      if (currentTop == null && getList('top').length) setTopByIndex(0);
+      if (currentBottom == null && getList('bottom').length) setBottomByIndex(0);
+    }
+  };
+  apply();
+  try {
+    window.matchMedia('(max-width: 980px)').addEventListener('change', apply);
+  } catch { window.addEventListener('resize', apply, {passive:true}); }
+})();
+
+// ========= Loading (solo portada) =========
+const LOADING_TIMEOUT_MS = 4000; // failsafe
+const loadingFailsafe = setTimeout(() => {
+  els.loading?.classList.add('fade-out');
+}, LOADING_TIMEOUT_MS);
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    els.loading?.classList.add('fade-out');
+    clearTimeout(loadingFailsafe);
+  }, 900);
+});
+
+// Atajo: click en el avatar para randomizar (sigue funcionando)
+els.avatarStage?.addEventListener('click', randomize);
+
+// ======= Ajustes finos (opcional) =======
+// document.querySelector('.avatar-stage')?.style.setProperty('--avatar-offset-y', '10%');
+// document.querySelector('.avatar-stage')?.style.setProperty('--top-y', '27%');
+// document.querySelector('.avatar-stage')?.style.setProperty('--bottom-y', '63%');
+// document.querySelector('.avatar-stage')?.style.setProperty('--top-scale', '78%');
+// document.querySelector('.avatar-stage')?.style.setProperty('--bottom-scale', '72%');
+
+  </script>
+
+
+</body>
+</html>

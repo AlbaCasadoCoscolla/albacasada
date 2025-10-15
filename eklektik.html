@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Eklektik — Alba Casada</title>
+  <link rel="stylesheet" href="https://use.typekit.net/bim0due.css"/>
+  <link rel="stylesheet" href="eklektik.css"/>
+</head>
+<body data-project-slug="eklektik">
+
+  <!-- NAV -->
+  <nav class="primary" aria-label="principal">
+    <a href="index.html">Inicio</a>
+    <a href="projects.html">Proyectos</a>
+    <a href="about.html">Sobre mí</a>
+  </nav>
+
+  <!-- Menú móvil -->
+  <header class="mobile-header">
+    <button id="burgerBtn" class="burger" aria-label="Abrir menú" aria-controls="mobileOverlay" aria-expanded="false">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <nav id="mobileOverlay" class="mobile-overlay" aria-hidden="true" role="dialog" aria-label="Menú móvil">
+    <button id="closeMenu" class="close-menu" aria-label="Cerrar">
+      <svg width="50" height="50" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="mobile-menu-content">
+      <button class="mobile-menu-btn" data-nav="projects.html">Proyectos</button>
+      <button class="mobile-menu-btn" data-nav="about.html">Sobre mí</button>
+    </div>
+  </nav>
+
+  <!-- Flecha entre proyectos (solo izquierda) -->
+  <button class="proj-nav proj-prev" id="projPrev" aria-label="Proyecto anterior" hidden>
+    <span class="arrow">‹</span><span class="proj-tooltip" id="prevTip"></span>
+  </button>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Portada del proyecto">
+      <figure class="cover" aria-label="Imagen destacada del proyecto">
+        <img src="media/galeria/eklektik/eklektik_logo.png" alt="Portada de 'Eklektik'">
+      </figure>
+
+      <div class="hero-grid">
+        <div class="summary">
+          <p class="description">  <strong>EklektiK</strong> es un juego de mesa de carácter juvenil que pone en valor la <strong>diversidad</strong> y la <strong>inclusión</strong> a partir de cartas que representan situaciones cotidianas. Se construyen dinámicas accesibles y estratégicas.</p>
+          <p class="lead">Combinando técnicas tradicionales y digitales, como la serigrafía, se emplea la <strong>ilustración</strong> para dar vida a personajes y escenas, el <strong>diseño gráfico</strong> para estructurar manuales y <strong>packaging</strong>, y la <strong>serigrafía</strong> como recurso artesanal para las piezas finales.</p>
+        
+          <div class="meta" aria-label="Software utilizado">
+            <span class="badge"><img src="media/logos/preocreate.png" alt="Procreate">Procreate</span>
+            <span class="badge"><img src="media/logos/photoshop.png" alt="Photoshop">Photoshop</span>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <img class="hero-render" src="media/galeria/eklektik/eklektik_portada.jpg" alt="Imagen de portada del proyecto">
+        </div>
+      </div>
+    </section>
+
+    <!-- LAS CASAS -->
+    <section class="houses" aria-label="Colecciones de casas">
+      <h2>Las casas</h2>
+      <div id="housesGrid" class="houses-grid" aria-live="polite">
+
+        <figure class="casa-card" data-key="rosa">
+          <div class="avatar">
+            <img src="media/galeria/eklektik/colores/rosa/puerta_rosa.png" alt="Avatar Rosa">
+          </div>
+          <figcaption>
+            <h3>Rosa</h3>
+            <p>La casa de una chica gamer.</p>
+            <button type="button" aria-label="Abrir Rosa">Ver colección</button>
+          </figcaption>
+        </figure>
+
+        <figure class="casa-card" data-key="rojo">
+          <div class="avatar">
+            <img src="media/galeria/eklektik/colores/rojo/puerta_rojo.png" alt="Avatar Rojo">
+          </div>
+          <figcaption>
+            <h3>Rojo</h3>
+            <p>El piso compartido de estudiantes.</p>
+            <button type="button" aria-label="Abrir Rojo">Ver colección</button>
+          </figcaption>
+        </figure>
+
+        <figure class="casa-card" data-key="turquesa">
+          <div class="avatar">
+            <img src="media/galeria/eklektik/colores/turquesa/puerta_turquesa.png" alt="Avatar Turquesa">
+          </div>
+          <figcaption>
+            <h3>Turquesa</h3>
+            <p>La casa de unas drag queens.</p>
+            <button type="button" aria-label="Abrir Turquesa">Ver colección</button>
+          </figcaption>
+        </figure>
+
+        <figure class="casa-card" data-key="azul">
+          <div class="avatar">
+            <img src="media/galeria/eklektik/colores/azul/puerta_azul.png" alt="Avatar Azul">
+          </div>
+          <figcaption>
+            <h3>Azul</h3>
+            <p>La casa lujosa y elegante.</p>
+            <button type="button" aria-label="Abrir Azul">Ver colección</button>
+          </figcaption>
+        </figure>
+
+        <figure class="casa-card" data-key="lila">
+          <div class="avatar">
+            <img src="media/galeria/eklektik/colores/lila/puerta_lila.png" alt="Avatar Lila">
+          </div>
+          <figcaption>
+            <h3>Lila</h3>
+            <p>La casa de una pareja de yayas.</p>
+            <button type="button" aria-label="Abrir Lila">Ver colección</button>
+          </figcaption>
+        </figure>
+
+        <figure class="casa-card" data-key="verde">
+          <div class="avatar">
+            <img src="media/galeria/eklektik/colores/verde/puerta_verde.png" alt="Avatar Verde">
+          </div>
+          <figcaption>
+            <h3>Verde</h3>
+            <p>Casa rural en el campo.</p>
+            <button type="button" aria-label="Abrir Verde">Ver colección</button>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- FOTOS FINALES -->
+    <section class="ek-finales" aria-label="Fotos finales">
+      <h2 class="ek-finales-title">Fotos definitivas</h2>
+      <div class="ek-finales-grid">
+        <figure><a href="media/galeria/eklektik/finales/final.jpg" data-gallery="finales"><img src="media/galeria/eklektik/finales/final.jpg" alt="" loading="lazy"></a></figure>
+        <figure><a href="media/galeria/eklektik/finales/final_1.jpg" data-gallery="finales"><img src="media/galeria/eklektik/finales/final_1.jpg" alt="" loading="lazy"></a></figure>
+        <figure><a href="media/galeria/eklektik/finales/final_2.jpg" data-gallery="finales"><img src="media/galeria/eklektik/finales/final_2.jpg" alt="" loading="lazy"></a></figure>
+        <figure><a href="media/galeria/eklektik/finales/final_3.jpg" data-gallery="finales"><img src="media/galeria/eklektik/finales/final_3.jpg" alt="" loading="lazy"></a></figure>
+        <figure><a href="media/galeria/eklektik/finales/final_4.jpg" data-gallery="finales"><img src="media/galeria/eklektik/finales/final_4.jpg" alt="" loading="lazy"></a></figure>
+        <figure><a href="media/galeria/eklektik/finales/final_5.jpg" data-gallery="finales"><img src="media/galeria/eklektik/finales/final_5.jpg" alt="" loading="lazy"></a></figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox fotos finales -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Imagen ampliada" hidden>
+    <div class="lb-frame">
+      <img class="lb-img" id="lbImg" alt="Imagen ampliada">
+      <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+      <button class="lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+      <button class="lb-next" id="lbNext" aria-label="Siguiente">›</button>
+    </div>
+  </div>
+
+  <!-- Visor de colecciones -->
+  <div class="collectionbox" id="collectionBox" aria-modal="true" role="dialog" aria-label="Colección de casa" hidden>
+    <div class="cb-frame">
+      <header class="cb-head">
+        <button class="cb-set" id="setPrev" aria-label="Colección anterior">‹</button>
+        <div class="cb-title"><span class="name" id="cbTitle">&nbsp;</span><span class="desc" id="cbDesc">&nbsp;</span></div>
+        <button class="cb-set" id="setNext" aria-label="Colección siguiente">›</button>
+        <button class="cb-close" id="cbClose" aria-label="Cerrar">✕</button>
+      </header>
+      <div class="cb-viewport">
+        <button class="img-nav prev" id="imgPrev" aria-label="Imagen anterior">‹</button>
+        <img id="cbImg" class="cb-img" alt="Ilustración de la colección" />
+        <button class="img-nav next" id="imgNext" aria-label="Imagen siguiente">›</button>
+      </div>
+      <div class="cb-dots" id="cbDots" aria-label="Paginación de imágenes"></div>
+    </div>
+  </div>
+
+  <!-- =========================
+       JS
+  ========================= -->
+  <script>
+const PROJECTS = [
+  { slug: 'memories-en-cendra', url: 'memories.html', title: 'Memories en Cendra' },
+  { slug: 'demonyos',           url: 'demonyos.html', title: 'Demonyos' },
+  { slug: 'eklektik',           url: 'eklektik.html', title: 'Eklektik' }
+];
+
+// Capas del visor
+const LAYERS6 = ['dormitorio','lavadero','bano','comedor','cocina','salon'];
+const LAYER_LABEL = {
+  dormitorio: 'Dormitorio', lavadero: 'Lavadero', bano: 'Baño', comedor: 'Comedor', cocina: 'Cocina', salon: 'Salón'
+};
+function imgPath(layer, color){
+  return `media/galeria/eklektik/colores/${color}/${layer}_${color}.png`;
+}
+
+/* NAV entre proyectos (solo se mostrará la izquierda en esta página al ser la última) */
+(function projectNav(){
+  const currentSlug = document.body.getAttribute('data-project-slug');
+  const currentIndex = PROJECTS.findIndex(p => p.slug === currentSlug);
+  const btnPrev = document.getElementById('projPrev');
+  const tipPrev = document.getElementById('prevTip');
+
+  if (currentIndex > 0) {
+    const prev = PROJECTS[currentIndex - 1];
+    tipPrev.textContent = prev.title;
+    btnPrev.hidden = false;
+    btnPrev.addEventListener('click', () => { window.location.href = prev.url; });
+  }
+})();
+
+/* Menú móvil */
+(function mobileMenu(){
+  const burger = document.getElementById('burgerBtn');
+  const overlay = document.getElementById('mobileOverlay');
+  const closeBtn = document.getElementById('closeMenu');
+  function open(){ overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); }
+  burger?.addEventListener('click', open);
+  closeBtn?.addEventListener('click', close);
+  overlay?.addEventListener('click', e=>{ if(e.target === overlay) close(); });
+  document.querySelectorAll('.mobile-menu-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ window.location.href = btn.dataset.nav; });
+  });
+})();
+
+/* Lightbox fotos finales */
+(function lightbox(){
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const btnClose = document.getElementById('lbClose');
+  const btnPrevLb = document.getElementById('lbPrev');
+  const btnNextLb = document.getElementById('lbNext');
+  let shots = [], idx = 0;
+  function collect(){ return Array.from(document.querySelectorAll('[data-gallery="finales"]')); }
+  function openAt(a){ shots = collect(); idx = shots.indexOf(a); update(); lb.classList.add('open'); lb.removeAttribute('hidden'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('hidden',''); document.body.style.overflow=''; }
+  function update(){ const link = shots[idx]; if(!link) return close(); lbImg.src = link.getAttribute('href'); const imgEl = link.querySelector('img'); lbImg.alt = (imgEl && imgEl.alt) ? `Imagen ampliada — ${imgEl.alt}` : 'Imagen ampliada'; }
+  function prev(){ idx = (idx - 1 + shots.length) % shots.length; update(); }
+  function next(){ idx = (idx + 1) % shots.length; update(); }
+  document.querySelectorAll('[data-gallery="finales"]').forEach(a=>{
+    a.addEventListener('click', e=>{ e.preventDefault(); openAt(a); });
+    a.setAttribute('role','button'); a.setAttribute('tabindex','0');
+  });
+  btnClose.addEventListener('click', close);
+  btnPrevLb.addEventListener('click', prev);
+  btnNextLb.addEventListener('click', next);
+  lb.addEventListener('click', e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown', e=>{
+    if(lb.classList.contains('open')){
+      if(e.key==='Escape') close();
+      if(e.key==='ArrowLeft') prev();
+      if(e.key==='ArrowRight') next();
+    }
+  });
+})();
+
+/* Visor colecciones (usa los data-key de cada figure) */
+(function housesVisor(){
+  const box = document.getElementById('collectionBox');
+  const cbTitle = document.getElementById('cbTitle');
+  const cbDesc  = document.getElementById('cbDesc');
+  const cbImg   = document.getElementById('cbImg');
+  const cbDots  = document.getElementById('cbDots');
+  const setPrev = document.getElementById('setPrev');
+  const setNext = document.getElementById('setNext');
+  const imgPrev = document.getElementById('imgPrev');
+  const imgNext = document.getElementById('imgNext');
+  const cbClose = document.getElementById('cbClose');
+  const cards   = document.querySelectorAll('.casa-card');
+
+  const COLLECTIONS = Array.from(cards).map(c=>({
+    key: c.dataset.key,
+    title: c.querySelector('h3').textContent,
+    desc: c.querySelector('p').textContent
+  }));
+
+  let setIndex = 0;
+  let imgIndex = 0;
+
+  function buildSetImages(key){ return LAYERS6.map(layer => ({ src: imgPath(layer, key), alt: `${LAYER_LABEL[layer]} — ${key}` })); }
+
+  function openSet(i){ setIndex = i; imgIndex = 0; updateSetInfo(); updateImage(); openBox(); }
+  function openBox(){ box.classList.add('open'); box.removeAttribute('hidden'); document.body.style.overflow='hidden'; }
+  function closeBox(){ box.classList.remove('open'); box.setAttribute('hidden',''); document.body.style.overflow=''; }
+
+  function updateSetInfo(){
+    const c = COLLECTIONS[setIndex];
+    cbTitle.textContent = c.title;
+    cbDesc.textContent  = c.desc;
+    cbDots.innerHTML = '';
+    LAYERS6.forEach((_, k)=>{
+      const dot = document.createElement('button');
+      dot.className = 'cb-dot';
+      dot.setAttribute('aria-current', k===imgIndex ? 'true' : 'false');
+      dot.addEventListener('click', ()=>{ imgIndex = k; updateImage(); });
+      cbDots.appendChild(dot);
+    });
+  }
+
+  function updateImage(){
+    const set = COLLECTIONS[setIndex];
+    const images = buildSetImages(set.key);
+    const item = images[imgIndex];
+    cbImg.src = item.src; cbImg.alt = item.alt;
+    Array.from(cbDots.children).forEach((d, k)=> d.setAttribute('aria-current', k===imgIndex ? 'true' : 'false'));
+  }
+
+  function prevImage(){ imgIndex = (imgIndex - 1 + LAYERS6.length) % LAYERS6.length; updateImage(); }
+  function nextImage(){ imgIndex = (imgIndex + 1) % LAYERS6.length; updateImage(); }
+  function prevSet(){ setIndex = (setIndex - 1 + COLLECTIONS.length) % COLLECTIONS.length; imgIndex = 0; updateSetInfo(); updateImage(); }
+  function nextSet(){ setIndex = (setIndex + 1) % COLLECTIONS.length; imgIndex = 0; updateSetInfo(); updateImage(); }
+
+  cards.forEach((c, i)=> c.querySelector('button').addEventListener('click', ()=>openSet(i)));
+  setPrev.addEventListener('click', prevSet);
+  setNext.addEventListener('click', nextSet);
+  imgPrev.addEventListener('click', prevImage);
+  imgNext.addEventListener('click', nextImage);
+  cbClose.addEventListener('click', closeBox);
+  box.addEventListener('click', e=>{ if(e.target === box) closeBox(); });
+  document.addEventListener('keydown', e=>{
+    if(!box.classList.contains('open')) return;
+    if(e.key==='Escape') closeBox();
+    else if(e.key==='ArrowLeft') prevImage();
+    else if(e.key==='ArrowRight') nextImage();
+  });
+})();
+  </script>
+</body>
+</html>

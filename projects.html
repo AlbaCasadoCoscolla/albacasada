@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alba Casada — Proyectos</title>
+  <link rel="stylesheet" href="https://use.typekit.net/bim0due.css"/>
+  <link rel="stylesheet" href="projects.css"/>
+</head>
+<body>
+  <!-- NAV (siempre va dentro del body) -->
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="about.html">Sobre mí</a>
+  </nav>
+
+  <main>
+    <section class="hero" aria-labelledby="titulo-seccion">
+      <!-- IMAGEN centrada -->
+      <img src="media/proyectos.png" alt="Alba Casada" class="name-banner"/>
+
+      <!-- Texto debajo del título -->
+      <p class="lead">
+        Trabajo en 3D, ilustración y diseño gráfico con un estilo cartoon y expresivo, siempre buscando un toque divertido y cercano. Concibo cada disciplina como parte de un mismo lenguaje visual, y todo lo que aprendo en una lo aplico de forma orgánica en las demás, explorando constantemente nuevas formas de comunicar.
+      </p>
+
+      <!-- Iconos: versión SIN texto -->
+      <section class="contact" aria-label="Redes y contacto">
+        <ul class="contact-list">
+          <li>
+            <a class="contact-item" href="albaacc01@gmail.com" aria-label="Enviar correo a albaacc01@gmail.com">
+              <img class="contact-icon" src="media/logos/mail.png" alt="" width="20" height="20" loading="lazy">
+            </a>
+          </li>
+          <li>
+            <a class="contact-item" href="https://behance.net/albacasado3" target="_blank" rel="noopener" aria-label="Abrir Behance en una pestaña nueva">
+              <img class="contact-icon" src="media/logos/behance.png" alt="" width="20" height="20" loading="lazy">
+            </a>
+          </li>
+          <li>
+            <a class="contact-item" href="https://linkedin.com/in/alba-casado-coscolla-b87419294" target="_blank" rel="noopener" aria-label="Abrir LinkedIn en una pestaña nueva">
+              <img class="contact-icon" src="media/logos/linkedin.png" alt="" width="20" height="20" loading="lazy">
+            </a>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Galería (solo 3 proyectos) -->
+    <section class="gallery" aria-label="Galería de proyectos">
+      <figure class="tile">
+        <img src="media/portadas/mec.png" alt="Memories en Cendra — portada" loading="lazy">
+        <figcaption class="caption">Experiencia de RV en 3D sobre las Fallas de Valencia</figcaption>
+        <a href="memories.html"></a>
+      </figure>
+
+      <figure class="tile">
+        <img src="media/portadas/demonyos.png" alt="Demonyos — ilustración" loading="lazy">
+        <figcaption class="caption">Identidad visual y gráfica del grupo de música de Demonyos</figcaption>
+        <a href="demonyos.html"></a>
+      </figure>
+
+      <figure class="tile">
+        <img src="media/portadas/eklektik.png" alt="Eklektik — identidad" loading="lazy">
+        <figcaption class="caption">Diseño y desarrollo de un juego de mesa</figcaption>
+        <a href="eklektik.html"></a>
+      </figure>
+    </section>
+  </main>
+
+  <!-- Menú móvil -->
+  <header class="mobile-header">
+    <button id="burgerBtn" class="burger" aria-label="Abrir menú" aria-controls="mobileOverlay" aria-expanded="false">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <nav id="mobileOverlay" class="mobile-overlay" aria-hidden="true" role="dialog" aria-label="Menú móvil">
+    <button id="closeMenu" class="close-menu" aria-label="Cerrar menú">
+      <svg width="50" height="50" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="mobile-menu-content">
+      <button class="mobile-menu-btn" data-nav="index.html">Inicio</button>
+      <button class="mobile-menu-btn" data-nav="about.html">Sobre mí</button>
+    </div>
+  </nav>
+
+  <script>
+  (function(){
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openMenu(){
+      mobileOverlay.classList.add('open');
+      mobileOverlay.setAttribute('aria-hidden','false');
+      burgerBtn.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+      const firstBtn = mobileOverlay.querySelector('.mobile-menu-btn');
+      if (firstBtn) firstBtn.focus();
+    }
+    function hideMenu(){
+      mobileOverlay.classList.remove('open');
+      mobileOverlay.setAttribute('aria-hidden','true');
+      burgerBtn.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+      burgerBtn.focus();
+    }
+
+    if (burgerBtn && mobileOverlay && closeMenu){
+      burgerBtn.addEventListener('click', openMenu);
+      closeMenu.addEventListener('click', hideMenu);
+      mobileOverlay.addEventListener('click', (e)=>{ if (e.target === mobileOverlay) hideMenu(); });
+      document.addEventListener('keydown', (e)=>{ if (mobileOverlay.classList.contains('open') && e.key === 'Escape'){ hideMenu(); } });
+      mobileOverlay.querySelectorAll('.mobile-menu-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const href = btn.getAttribute('data-nav');
+          if (href) window.location.href = href;
+        });
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
