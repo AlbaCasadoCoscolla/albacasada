@@ -329,6 +329,45 @@ main {
     margin-inline: auto;
   }
 
-  /* asegúrate de que el overlay tape flechas de proyecto */
+
   .proj-nav { z-index: 120; }
 }
+html.is-locked,
+body.is-locked {
+  overflow: hidden !important;
+}
+
+@supports (position: fixed) {
+  body.is-locked {
+    position: fixed !important;
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 720px){
+  .mobile-overlay{
+    position: fixed;
+    inset: 0;
+    width: 100dvw;       /* viewport real en móviles */
+    height: 100dvh;      /* viewport real en móviles */
+    background: #ffe44b;
+    z-index: 9999;       /* por encima de cualquier cosa */
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+    overflow: hidden;    /* evita scroll interno */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+             env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .mobile-overlay.open{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Asegura que las flechas nunca se cuelen por encima del overlay */
+  .proj-nav { z-index: 120; }
+}
+
