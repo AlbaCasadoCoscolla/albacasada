@@ -562,6 +562,11 @@ h2 {
   }
 }
 
-.figcaption {
+figcaption {
   background: #000;
+  color: #fff;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border-radius: 0 0 12px 12px; /* redondea la parte inferior, opcional */
 }
+
