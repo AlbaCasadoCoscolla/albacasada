@@ -636,8 +636,11 @@ main {
     justify-items: center;
     gap: var(--space-2);
   }
-  .ek-finales-grid figure {
-    width: min(94vw, 720px);
+
+   .ek-finales-grid figure {
+    width: min(90vw, 560px);
+    margin: 0 auto; /* centra por si acaso */
+  
   }
   .ek-finales-grid img {
     width: 100%;
@@ -655,4 +658,5 @@ main {
 .lb-close {
   z-index: 2100 !important;
 }
+
 
