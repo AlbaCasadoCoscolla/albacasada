@@ -235,7 +235,6 @@ h2 {
   grid-template-columns: repeat(4, 1fr);
 }
 
-
 @media (max-width: 980px){
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -333,69 +332,6 @@ h2 {
   color: var(--ink);
 }
 
-/* Modo scroll-snap (3 cuadradas, sin flechas) */
-.process.proc-scroll .proc-btn {
-  display: none !important;
-}
-.process.proc-scroll .proc-viewport {
-  height: auto;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 12px;
-  position: relative;
-  cursor: grab;
-  scrollbar-width: thin;
-  scrollbar-color: #ff32c290 transparent;
-}
-.process.proc-scroll .proc-viewport:active {
-  cursor: grabbing;
-}
-.process.proc-scroll .proc-viewport::-webkit-scrollbar {
-  height: 8px;
-}
-.process.proc-scroll .proc-viewport::-webkit-scrollbar-track {
-  background: transparent;
-}
-.process.proc-scroll .proc-viewport::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,.28);
-  border-radius: 999px;
-}
-.process.proc-scroll .proc-viewport::-webkit-scrollbar-thumb:hover {
-  background: rgba(0,0,0,.38);
-}
-.process.proc-scroll .proc-track {
-  display: grid;
-  grid-auto-flow: column;
-  gap: var(--space-2);
-  grid-auto-columns: calc((100% - 2 * var(--space-2)) / 3);
-  height: auto;
-}
-.process.proc-scroll .proc-slide {
-  scroll-snap-align: start;
-  aspect-ratio: 1 / 1;
-  height: auto;
-  border-radius: 12px;
-  overflow: hidden;
-}
-.process.proc-scroll .proc-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-@media (max-width: 980px){
-  .process.proc-scroll .proc-track {
-    grid-auto-columns: calc((100% - var(--space-2)) / 2);
-  }
-}
-@media (max-width: 560px){
-  .process.proc-scroll .proc-track {
-    grid-auto-columns: 100%;
-  }
-}
-
 /* ===========================
    LIGHTBOX
 =========================== */
@@ -406,7 +342,7 @@ h2 {
   place-items: center;
   background: rgba(0,0,0,.6);
   backdrop-filter: saturate(1.1) blur(2px);
-  z-index: 20;
+  z-index: 2000 !important; /* por delante de .proj-nav */
 }
 .lightbox.open {
   display: grid;
@@ -442,6 +378,7 @@ h2 {
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,.25);
   font-size: 22px;
+  z-index: 2100 !important; /* botones aún por encima */
 }
 .lb-close {
   top: 8px;
@@ -449,13 +386,15 @@ h2 {
   transform: none;
 }
 .lb-prev  { left: -54px; }
-lb-next  { right: -54px; }
+.lb-next  { right: -54px; }
 @media (max-width: 720px){
   .lb-prev  { left: 8px; }
   .lb-next  { right: 8px; }
 }
 
-/* Flechas entre proyectos */
+/* ===========================
+   Flechas entre proyectos
+=========================== */
 .proj-nav {
   position: fixed;
   top: 50%;
@@ -521,7 +460,7 @@ lb-next  { right: -54px; }
 }
 
 /* ===========================
-   MENÚ MÓVIL (solo móvil)
+   MENÚ MÓVIL
 =========================== */
 .mobile-header,
 .mobile-overlay {
@@ -621,157 +560,8 @@ lb-next  { right: -54px; }
   .proj-nav {
     z-index: 120;
   }
-
-  /* Video(s) YouTube responsive en móvil */
-  body[data-project-slug="demonyos"] .team .video-feature figure {
-    width: 100%;
-    margin: 0;
-  }
-  body[data-project-slug="demonyos"] .team .video-feature iframe {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;
-    display: block;
-    border: 0;
-    border-radius: 12px;
-  }
-  body[data-project-slug="demonyos"] .team .video-grid iframe {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;
-    display: block;
-    border: 0;
-    border-radius: 12px;
-  }
 }
 
-/* =========================================================
-   OVERRIDES ESPECÍFICOS PARA ESTA PÁGINA (demonyos)
-========================================================= */
-
-/* 1) Carátulas: que el H2 quede más cerca de la galería */
-body[data-project-slug="demonyos"] main > h2:first-of-type {
-  margin-top: var(--space-5);
+.figcaption {
+  background: #000;
 }
-
-/* 2) Galería como grid 3x2 de cuadrados con caption */
-body[data-project-slug="demonyos"] .gallery.masonry.fullbleed {
-  width: 100%;
-  margin-left: 0;
-  transform: none;
-  padding: var(--space-3) 0 0;
-  column-count: initial;
-  column-gap: initial;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-2);
-}
-@media (max-width: 900px){
-  body[data-project-slug="demonyos"] .gallery.masonry.fullbleed {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 560px){
-  body[data-project-slug="demonyos"] .gallery.masonry.fullbleed {
-    grid-template-columns: 1fr;
-  }
-}
-body[data-project-slug="demonyos"] .gallery.masonry .pin {
-  display: block;
-  background: transparent;
-  box-shadow: none;
-  margin: 0;
-}
-body[data-project-slug="demonyos"] .gallery.masonry .pin a {
-  display: block;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #eee;
-  box-shadow: 0 4px 10px rgba(0,0,0,.08);
-}
-body[data-project-slug="demonyos"] .gallery.masonry .pin .thumb {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  transition: transform .3s ease;
-  display: block;
-}
-body[data-project-slug="demonyos"] .gallery.masonry .pin:hover .thumb {
-  transform: scale(1.02);
-}
-
-/* Caption pequeño bajo cada imagen (también útil en vídeos/cartelería) */
-.caption {
-  font-size: .85rem;
-  line-height: 1.3;
-  opacity: .85;
-  padding: 6px 2px 0;
-}
-
-/* 3) Videoclips y Visualizers: ocultar piezas de “equipo” y mostrar vídeos */
-body[data-project-slug="demonyos"] .team .intro,
-body[data-project-slug="demonyos"] .team .team-grid,
-body[data-project-slug="demonyos"] .team .my-role {
-  display: none !important;
-}
-body[data-project-slug="demonyos"] .team .video-feature {
-  margin-top: var(--space-2);
-}
-body[data-project-slug="demonyos"] .team .video-feature video,
-body[data-project-slug="demonyos"] .team .video-feature img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
-body[data-project-slug="demonyos"] .team .video-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-2);
-  margin-top: var(--space-2);
-  justify-items: center; /* centra los iframes */
-}
-@media (max-width: 720px){
-  body[data-project-slug="demonyos"] .team .video-grid {
-    grid-template-columns: 1fr;
-  }
-}
-body[data-project-slug="demonyos"] .team .video-grid figure img,
-body[data-project-slug="demonyos"] .team .video-grid figure video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
-
-/* 4) Cartelería sin scroll: 2 verticales + 1 GIF vertical, estático */
-body[data-project-slug="demonyos"] .process.proc-static .posters-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-2);
-}
-@media (max-width: 980px){
-  body[data-project-slug="demonyos"] .process.proc-static .posters-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 560px){
-  body[data-project-slug="demonyos"] .process.proc-static .posters-grid {
-    grid-template-columns: 1fr;
-  }
-}
-body[data-project-slug="demonyos"] .process.proc-static .posters-grid figure img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  object-fit: cover;
-}
-/* Asegura que no aparezcan flechas/viewport heredados en proc-static */
-body[data-project-slug="demonyos"] .process.proc-static .proc-btn,
-body[data-project-slug="demonyos"] .process.proc-static .proc-viewport,
-body[data-project-slug="demonyos"] .process.proc-static .proc-track {
-  display: none !important;
-}
-
