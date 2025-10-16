@@ -185,7 +185,7 @@
   <!-- =========================
        JS
   ========================= -->
-  <script>
+<script>
 const PROJECTS = [
   { slug: 'memories-en-cendra', url: 'memories.html', title: 'Memories en Cendra' },
   { slug: 'demonyos',           url: 'demonyos.html', title: 'Demonyos' },
@@ -216,22 +216,69 @@ function imgPath(layer, color){
   }
 })();
 
-/* Menú móvil */
+/* Menú móvil (overlay pantalla completa + bloqueo de scroll) */
 (function mobileMenu(){
   const burger = document.getElementById('burgerBtn');
   const overlay = document.getElementById('mobileOverlay');
   const closeBtn = document.getElementById('closeMenu');
-  function open(){ overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); }
-  function close(){ overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); }
+
+  let scrollY = 0;
+
+  function lockScroll(){
+    // Guarda la posición y fija el body (compatible iOS)
+    scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+  function unlockScroll(){
+    document.documentElement.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollY);
+  }
+
+  function open(){
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+    burger.setAttribute('aria-expanded','true');
+    // Asegura cubrir el viewport real en móvil
+    overlay.style.width = '100dvw';
+    overlay.style.height = '100dvh';
+    lockScroll();
+    const firstBtn = overlay.querySelector('.mobile-menu-btn');
+    if (firstBtn) firstBtn.focus();
+  }
+  function close(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden','true');
+    burger.setAttribute('aria-expanded','false');
+    overlay.style.width = '';
+    overlay.style.height = '';
+    unlockScroll();
+    burger.focus();
+  }
+
   burger?.addEventListener('click', open);
   closeBtn?.addEventListener('click', close);
   overlay?.addEventListener('click', e=>{ if(e.target === overlay) close(); });
+  document.addEventListener('keydown', e=>{ if (overlay?.classList.contains('open') && e.key === 'Escape') close(); });
   document.querySelectorAll('.mobile-menu-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{ window.location.href = btn.dataset.nav; });
   });
+
+  // Evita desplazamiento por gesto dentro del overlay
+  overlay?.addEventListener('touchmove', (e)=>{ e.preventDefault(); }, { passive: false });
+  overlay?.addEventListener('wheel', (e)=>{ e.preventDefault(); }, { passive: false });
 })();
 
-/* Lightbox fotos finales */
+/* Lightbox fotos finales (sin cambios) */
 (function lightbox(){
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
@@ -262,7 +309,7 @@ function imgPath(layer, color){
   });
 })();
 
-/* Visor colecciones (usa los data-key de cada figure) */
+/* Visor colecciones (sin cambios) */
 (function housesVisor(){
   const box = document.getElementById('collectionBox');
   const cbTitle = document.getElementById('cbTitle');
@@ -332,6 +379,8 @@ function imgPath(layer, color){
     else if(e.key==='ArrowRight') nextImage();
   });
 })();
-  </script>
+</script>
+
 </body>
 </html>
+
