@@ -32,7 +32,7 @@ body {
   overflow-x: hidden;
 }
 
-/* NAV fija (visible sólo en pantallas >= 721px) */
+/* NAV fija */
 nav {
   position: fixed;
   inset: 0 0 auto 0;
@@ -137,203 +137,134 @@ main {
   object-fit: contain;
 }
 
-/* Vídeo/imagen a la derecha del hero */
-.hero-render {
-  width: 100%;
-}
-.hero-render video,
-.hero-render img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* Titulares de sección */
-h2 {
-  font-family: "gambado-sans-forte", sans-serif;
-  font-size: clamp(22px, 3vw, 32px);
-  margin-bottom: var(--space-2);
-  color: var(--accent);
-}
-
 /* ===========================
-   GALERÍA PRINCIPAL · Masonry (base)
+   GALERÍA 3x2 PORTADAS 🔧
 =========================== */
-.gallery.masonry.fullbleed {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  column-count: 3;
-  column-gap: 24px;
-  padding: var(--space-5) var(--gutter) 0;
+body[data-project-slug="demonyos"] .gallery.masonry.fullbleed {
+  width: 100%;
+  margin-left: 0;
+  transform: none;
+  padding: var(--space-3) 0 0;
+  column-count: initial;
+  column-gap: initial;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
 }
 @media (max-width: 900px){
-  .gallery.masonry.fullbleed {
-    column-count: 2;
+  body[data-project-slug="demonyos"] .gallery.masonry.fullbleed {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 560px){
-  .gallery.masonry.fullbleed {
-    column-count: 1;
+  body[data-project-slug="demonyos"] .gallery.masonry.fullbleed {
+    grid-template-columns: 1fr;
   }
 }
-.gallery.masonry .pin {
-  break-inside: avoid;
-  display: inline-block;
-  width: 100%;
-  margin: 0 0 24px 0;
+body[data-project-slug="demonyos"] .gallery.masonry .pin {
+  display: block;
+  background: transparent;
+  box-shadow: none;
+  margin: 0;
+}
+body[data-project-slug="demonyos"] .gallery.masonry .pin a {
+  display: block;
   border-radius: 12px;
   overflow: hidden;
   background: #eee;
   box-shadow: 0 4px 10px rgba(0,0,0,.08);
 }
-.gallery.masonry .pin img {
+body[data-project-slug="demonyos"] .gallery.masonry .pin .thumb {
   width: 100%;
   height: auto;
-  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   transition: transform .3s ease;
+  display: block;
 }
-.gallery.masonry .pin:hover img {
+body[data-project-slug="demonyos"] .gallery.masonry .pin:hover .thumb {
   transform: scale(1.02);
 }
-
-/* Galería calmada (colapsada a 6) */
-.gallery.masonry.fullbleed.is-collapsed .pin:nth-child(n+7) {
-  display: none;
-}
-.gallery-toggle {
-  display: inline-block;
-  margin: 8px auto 0;
-  padding: 10px 14px;
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 12px;
-  background: #fff;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0,0,0,.06);
-}
-.gallery-toggle:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,.10);
+.caption {
+  font-size: .85rem;
+  line-height: 1.3;
+  opacity: .85;
+  padding: 6px 2px 0;
 }
 
 /* ===========================
-   EQUIPO (base)
+   VIDEOCLIPS / VISUALIZERS 🔧
 =========================== */
-.team {
-  margin-top: var(--space-5);
+body[data-project-slug="demonyos"] .team .intro,
+body[data-project-slug="demonyos"] .team .team-grid,
+body[data-project-slug="demonyos"] .team .my-role {
+  display: none !important;
 }
-.team .intro {
-  max-width: 60ch;
-  margin: 0 0 var(--space-4);
-  text-align: left;
+body[data-project-slug="demonyos"] .team .video-feature {
+  margin-top: var(--space-2);
 }
-.team-grid {
+body[data-project-slug="demonyos"] .team .video-feature video,
+body[data-project-slug="demonyos"] .team .video-feature img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+body[data-project-slug="demonyos"] .team .video-grid {
   display: grid;
-  gap: var(--space-3);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  justify-items: center;
+}
+@media (max-width: 720px){
+  body[data-project-slug="demonyos"] .team .video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+body[data-project-slug="demonyos"] .team .video-grid iframe {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border: 0;
+  border-radius: 12px;
 }
 
+/* ===========================
+   CARTELERÍA 🔧
+=========================== */
+body[data-project-slug="demonyos"] .process.proc-static .posters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
 @media (max-width: 980px){
-  .team-grid {
+  body[data-project-slug="demonyos"] .process.proc-static .posters-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (max-width: 560px){
-  .team-grid {
+  body[data-project-slug="demonyos"] .process.proc-static .posters-grid {
     grid-template-columns: 1fr;
   }
 }
-.member {
-  display: grid;
-  gap: var(--space-1);
-  justify-items: start;
-  text-align: left;
-}
-.member .avatar {
-  width: 132px;
-  height: 132px;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-  margin-bottom: var(--space-1);
-}
-.member .name {
-  font-weight: 700;
-  font-size: 1.02rem;
-}
-.member .role {
-  font-size: .95rem;
-  color: var(--ink);
-}
-.my-role {
-  margin-top: var(--space-4);
-  max-width: 70ch;
-}
-
-/* ===========================
-   PROCESO (base + scroll-snap)
-=========================== */
-.process {
-  margin-top: var(--space-5);
-}
-.proc-stage {
-  position: relative;
-  outline: none;
-}
-.proc-viewport {
+body[data-project-slug="demonyos"] .process.proc-static .posters-grid figure img {
   width: 100%;
-  height: clamp(320px, 44vh, 520px);
-  overflow: hidden;
+  height: auto;
+  display: block;
   border-radius: 12px;
+  object-fit: cover;
 }
-.proc-track {
-  display: flex;
-  height: 100%;
-  transition: transform .35s ease;
-  will-change: transform;
-}
-.proc-slide {
-  flex: 0 0 100%;
-  height: 100%;
-  display: block;
-  position: relative;
-}
-.proc-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.proc-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
-  border: none;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,.18);
-  cursor: pointer;
-  font-size: 20px;
-  line-height: 1;
-  z-index: 2;
-}
-.proc-prev { left: 10px; }
-.proc-next { right: 10px; }
-.proc-btn:disabled {
-  opacity: .5;
-  cursor: default;
-}
-.process-outro {
-  margin-top: var(--space-2);
-  color: var(--ink);
+/* oculta el carrusel si hay grid estático */
+body[data-project-slug="demonyos"] .process.proc-static .proc-btn,
+body[data-project-slug="demonyos"] .process.proc-static .proc-viewport,
+body[data-project-slug="demonyos"] .process.proc-static .proc-track {
+  display: none !important;
 }
 
 /* ===========================
-   LIGHTBOX
+   LIGHTBOX (ajuste de z-index 🔧)
 =========================== */
 .lightbox {
   position: fixed;
@@ -342,11 +273,9 @@ h2 {
   place-items: center;
   background: rgba(0,0,0,.6);
   backdrop-filter: saturate(1.1) blur(2px);
-  z-index: 2000 !important; /* por delante de .proj-nav */
+  z-index: 2000 !important; /* delante de .proj-nav */
 }
-.lightbox.open {
-  display: grid;
-}
+.lightbox.open { display: grid; }
 .lb-frame {
   position: relative;
   width: min(96vw, 1100px);
@@ -378,22 +307,18 @@ h2 {
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,.25);
   font-size: 22px;
-  z-index: 2100 !important; /* botones aún por encima */
+  z-index: 2100 !important; /* botones por encima */
 }
-.lb-close {
-  top: 8px;
-  right: 8px;
-  transform: none;
-}
-.lb-prev  { left: -54px; }
-.lb-next  { right: -54px; }
+.lb-close { top: 8px; right: 8px; transform: none; }
+.lb-prev { left: -54px; }
+.lb-next { right: -54px; }
 @media (max-width: 720px){
-  .lb-prev  { left: 8px; }
-  .lb-next  { right: 8px; }
+  .lb-prev { left: 8px; }
+  .lb-next { right: 8px; }
 }
 
 /* ===========================
-   Flechas entre proyectos
+   FLECHAS ENTRE PROYECTOS 🔧
 =========================== */
 .proj-nav {
   position: fixed;
@@ -408,22 +333,17 @@ h2 {
   cursor: pointer;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,.18);
-  z-index: 15;
+  z-index: 15; /* detrás del lightbox */
   transition: transform .15s ease, box-shadow .15s ease;
 }
-.proj-nav[hidden] {
-  display: none !important;
-}
+.proj-nav[hidden] { display: none !important; }
 .proj-nav:hover {
   transform: translateY(-50%) scale(1.03);
   box-shadow: 0 4px 12px rgba(0,0,0,.22);
 }
 .proj-prev { left: 14px; }
 .proj-next { right: 14px; }
-.proj-nav .arrow {
-  font-size: 22px;
-  line-height: 1;
-}
+.proj-nav .arrow { font-size: 22px; line-height: 1; }
 .proj-tooltip {
   position: absolute;
   top: 50%;
@@ -441,38 +361,17 @@ h2 {
   font-weight: 600;
   border: 1px solid rgba(0,0,0,.06);
 }
-.proj-prev .proj-tooltip {
-  left: 56px;
-  transform: translate(0,-50%);
-}
-.proj-next .proj-tooltip {
-  right: 56px;
-  transform: translate(0,-50%);
-}
-
-/* Accesibilidad */
-@media (prefers-reduced-motion: reduce){
-  .gallery.masonry .pin img,
-  .proc-track,
-  .proj-nav {
-    transition: none;
-  }
-}
+.proj-prev .proj-tooltip { left: 56px; transform: translate(0,-50%); }
+.proj-next .proj-tooltip { right: 56px; transform: translate(0,-50%); }
 
 /* ===========================
-   MENÚ MÓVIL
+   MENÚ MÓVIL (igual)
 =========================== */
 .mobile-header,
-.mobile-overlay {
-  display: none;
-}
+.mobile-overlay { display: none; }
 @media (max-width: 720px){
-  nav {
-    display: none;
-  }
-  main {
-    padding: var(--space-2) var(--gutter) var(--space-5);
-  }
+  nav { display: none; }
+  main { padding: var(--space-2) var(--gutter) var(--space-5); }
 
   .mobile-header {
     position: fixed;
@@ -493,9 +392,7 @@ h2 {
     backdrop-filter: blur(6px);
     box-shadow: 0 4px 12px rgba(0,0,0,.12);
   }
-  .burger svg path {
-    stroke: #ff56d7;
-  }
+  .burger svg path { stroke: #ff56d7; }
 
   .mobile-overlay {
     position: fixed;
@@ -529,9 +426,7 @@ h2 {
     cursor: pointer;
     z-index: 240;
   }
-  .close-menu svg path {
-    stroke: #ff56d7;
-  }
+  .close-menu svg path { stroke: #ff56d7; }
 
   .mobile-menu-content {
     display: flex;
@@ -552,14 +447,8 @@ h2 {
     cursor: pointer;
   }
 
-  .cover {
-    width: 90%;
-    margin-top: 80px;
-  }
-
-  .proj-nav {
-    z-index: 120;
-  }
+  .cover { width: 90%; margin-top: 80px; }
+  .proj-nav { z-index: 120; }
 }
 
 figcaption {
@@ -567,6 +456,5 @@ figcaption {
   color: #fff;
   padding: 8px 10px;
   font-size: 0.9rem;
-  border-radius: 0 0 12px 12px; /* redondea la parte inferior, opcional */
+  border-radius: 0 0 12px 12px;
 }
-
