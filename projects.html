@@ -89,25 +89,55 @@
     </div>
   </nav>
 
-  <script>
+<script>
   (function(){
     const burgerBtn = document.getElementById('burgerBtn');
     const mobileOverlay = document.getElementById('mobileOverlay');
     const closeMenu = document.getElementById('closeMenu');
 
+    let scrollY = 0;
+
+    function lockScroll(){
+      // Guarda la posición y fija el body (truco iOS-friendly)
+      scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      document.documentElement.style.overflow = 'hidden'; // evita scroll de raíz
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+    }
+
+    function unlockScroll(){
+      // Restaura el estado previo de scroll exactamente donde estaba
+      document.documentElement.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollY);
+    }
+
     function openMenu(){
       mobileOverlay.classList.add('open');
       mobileOverlay.setAttribute('aria-hidden','false');
       burgerBtn.setAttribute('aria-expanded','true');
-      document.body.style.overflow = 'hidden';
+      // Asegura cubrir viewport real en móviles sin tocar tu CSS
+      mobileOverlay.style.width = '100dvw';
+      mobileOverlay.style.height = '100dvh';
+      lockScroll();
       const firstBtn = mobileOverlay.querySelector('.mobile-menu-btn');
       if (firstBtn) firstBtn.focus();
     }
+
     function hideMenu(){
       mobileOverlay.classList.remove('open');
       mobileOverlay.setAttribute('aria-hidden','true');
       burgerBtn.setAttribute('aria-expanded','false');
-      document.body.style.overflow = '';
+      mobileOverlay.style.width = '';
+      mobileOverlay.style.height = '';
+      unlockScroll();
       burgerBtn.focus();
     }
 
@@ -122,8 +152,14 @@
           if (href) window.location.href = href;
         });
       });
+
+      // Evita desplazamiento por gesto dentro del overlay (pull/overscroll)
+      mobileOverlay.addEventListener('touchmove', (e)=>{ e.preventDefault(); }, { passive: false });
+      mobileOverlay.addEventListener('wheel', (e)=>{ e.preventDefault(); }, { passive: false });
     }
   })();
-  </script>
+</script>
+
 </body>
 </html>
+
