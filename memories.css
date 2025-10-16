@@ -371,3 +371,6 @@ body.is-locked {
   .proj-nav { z-index: 120; }
 }
 
+.lightbox { z-index: 2000 !important; }
+
+
