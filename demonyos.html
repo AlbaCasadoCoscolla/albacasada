@@ -181,7 +181,7 @@
     </div>
   </div>
 
-  <script>
+ <script>
 /* ========== Config ========== */
 const PROJECTS = [
   { slug: 'memories-en-cendra', url: 'memories.html', title: 'Memories en Cendra' },
@@ -292,9 +292,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const procRoot = proc ? proc.closest('.process') : null;
 
   if (procRoot && procRoot.classList.contains('proc-static')) {
-    // Modo estático: sin slider ni scroll-snap
+    // Modo estático
   } else if (proc && !procRoot.classList.contains('proc-scroll')){
-    // (sigue disponible el modo slider clásico si se usa en otros proyectos)
+    // Slider clásico (por si se reutiliza)
     const viewport = proc.querySelector('.proc-viewport');
     const track = proc.querySelector('.proc-track');
     const slides = Array.from(track ? track.querySelectorAll('.proc-slide') : []);
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
       render();
     }
   } else if (procRoot && procRoot.classList.contains('proc-scroll')) {
-    // (sigue disponible el modo scroll-snap para otros proyectos)
+    // Scroll-snap (por si se usa en otros proyectos)
     const viewport = proc.querySelector('.proc-viewport');
     proc.addEventListener('keydown', (e)=>{
       if (e.key === 'ArrowLeft'){ e.preventDefault(); viewport.scrollBy({ left: -viewport.clientWidth/1.05, behavior: 'smooth' }); }
@@ -346,17 +346,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================
-     MENÚ MÓVIL (burger)
+     MENÚ MÓVIL (overlay + bloqueo scroll)
   ========================== */
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileOverlay = document.getElementById('mobileOverlay');
   const closeMenu = document.getElementById('closeMenu');
 
+  let scrollY = 0;
+
+  function lockScroll(){
+    // Guarda la posición y fija el body (compatible iOS)
+    scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+  function unlockScroll(){
+    document.documentElement.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollY);
+  }
+
   function openMenu(){
     mobileOverlay.classList.add('open');
     mobileOverlay.setAttribute('aria-hidden','false');
     burgerBtn.setAttribute('aria-expanded','true');
-    document.body.style.overflow = 'hidden';
+    // Asegura cubrir viewport real en móviles
+    mobileOverlay.style.width = '100dvw';
+    mobileOverlay.style.height = '100dvh';
+    lockScroll();
     const firstBtn = mobileOverlay.querySelector('.mobile-menu-btn');
     if (firstBtn) firstBtn.focus();
   }
@@ -364,7 +389,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileOverlay.classList.remove('open');
     mobileOverlay.setAttribute('aria-hidden','true');
     burgerBtn.setAttribute('aria-expanded','false');
-    document.body.style.overflow = '';
+    mobileOverlay.style.width = '';
+    mobileOverlay.style.height = '';
+    unlockScroll();
     burgerBtn.focus();
   }
 
@@ -379,9 +406,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (href) window.location.href = href;
       });
     });
+
+    // Evita desplazamiento por gesto dentro del overlay (por si acaso)
+    mobileOverlay.addEventListener('touchmove', (e)=>{ e.preventDefault(); }, { passive: false });
+    mobileOverlay.addEventListener('wheel', (e)=>{ e.preventDefault(); }, { passive: false });
   }
 });
-  </script>
+</script>
+
 </body>
 </html>
+
 
