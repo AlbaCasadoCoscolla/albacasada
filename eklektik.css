@@ -638,7 +638,7 @@ main {
   }
 
    .ek-finales-grid figure {
-    width: min(90vw, 560px);
+    width: min(84vw, 520px);
     margin: 0 auto; /* centra por si acaso */
   
   }
@@ -658,5 +658,6 @@ main {
 .lb-close {
   z-index: 2100 !important;
 }
+
 
 
