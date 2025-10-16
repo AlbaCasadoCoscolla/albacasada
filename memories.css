@@ -328,6 +328,8 @@ main {
   .member .avatar{
     margin-inline: auto;
   }
+  .lightbox { z-index: 2000 !important; }
+  .lb-prev, .lb-next { z-index: 2100 !important; }
 
 
   .proj-nav { z-index: 120; }
@@ -370,7 +372,5 @@ body.is-locked {
   /* Asegura que las flechas nunca se cuelen por encima del overlay */
   .proj-nav { z-index: 120; }
 }
-
-.lightbox { z-index: 2000 !important; }
 
 
