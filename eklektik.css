@@ -646,3 +646,13 @@ main {
     margin: 0 auto;
   }
 }
+.lightbox {
+  z-index: 2000 !important;
+}
+
+.lb-prev,
+.lb-next,
+.lb-close {
+  z-index: 2100 !important;
+}
+
