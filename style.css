@@ -243,6 +243,20 @@ video {
   transform: scale(1.06) rotate(-3deg);
 }
 
+.folderbtn::before {
+  content: "Descargar Portfolio";
+  position: absolute;
+  left: 50%;
+  top: calc(100% + -20px);
+  transform: translateX(-50%);
+  font: 600 11px/1 "Poppins", sans-serif;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,.35);
+  opacity: 0.95;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 .folderbtn::after {
   content: "Arrástrame <3";
   position: absolute;
@@ -433,6 +447,7 @@ video {
 
   #tituloPorfolio {
     display: block;
+   pointer-events: auto !important;
   }
 
   .contact-info {
@@ -502,3 +517,4 @@ video {
     width: 450px;
   }
 }
+
