@@ -518,3 +518,11 @@ video {
   }
 }
 
+@media (max-width: 576px) {
+  #tituloPorfolio {
+    pointer-events: auto !important;  
+    cursor: pointer;
+  }
+}
+
+
