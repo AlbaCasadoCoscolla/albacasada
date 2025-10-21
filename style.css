@@ -518,6 +518,15 @@ video {
   }
 }
 
+@media (max-width: 576px) {
+  .mobile-overlay {
+    display: none !important;   /* cerrado: no ocupa ni bloquea */
+  }
+  .mobile-overlay.open {
+    display: flex !important;   /* abierto: aparece normal */
+  }
+}
+
 
 
 
