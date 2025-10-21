@@ -330,6 +330,7 @@ video {
     height: auto;
     z-index: 10;
     opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   /* Icono mail abajo a la izquierda */
@@ -447,7 +448,6 @@ video {
 
   #tituloPorfolio {
     display: block;
-   pointer-events: auto !important;
   }
 
   .contact-info {
@@ -518,11 +518,6 @@ video {
   }
 }
 
-@media (max-width: 576px) {
-  #tituloPorfolio {
-    pointer-events: auto !important;  
-    cursor: pointer;
-  }
-}
+
 
 
