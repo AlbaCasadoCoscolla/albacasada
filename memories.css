@@ -446,4 +446,13 @@ main {
   .proj-nav { z-index: 120; } /* sigue por debajo del lightbox (400/410) */
 }
 
+.mobile-overlay{
+  overflow: hidden; /* Añadir si no está */
+}
+body.menu-open{
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 
