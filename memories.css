@@ -433,4 +433,5 @@ main {
 .event-photo:hover img{ transform: scale(1.02); }
 
 
+.lightbox { z-index: 300 !important; }
 
