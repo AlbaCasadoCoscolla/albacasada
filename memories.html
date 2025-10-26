@@ -6,7 +6,6 @@
   <title>Memòries en Cendra — Alba Casada</title>
   <link rel="stylesheet" href="https://use.typekit.net/bim0due.css"/>
   <link rel="stylesheet" href="memories.css"/>
-  <link rel="icon" type="favicon" href="media/favicon.png">
 </head>
 <body data-project-slug="memories-en-cendra">
 
@@ -97,6 +96,43 @@
 
     <button class="gallery-toggle" id="galleryToggle" aria-expanded="false">Ver más</button>
 
+       <section class="press" aria-label="Artículos en prensa">
+      <h2>Artículos en prensa</h2>
+     <ul class="press-grid">
+  <li class="press-card">
+    <a href="https://www.youtube.com/watch?v=tkvjZF6Nd3I" target="_blank" rel="noopener noreferrer" class="press-link">
+      <span class="press-outlet">YouTube · LIVE 07</span>
+      <span class="press-title">Entrevista en OWN PODCAST</span>
+      <span class="press-ext" aria-hidden="true">↗</span>
+    </a>
+  </li>
+
+  <li class="press-card">
+    <a href="https://www.cope.es/emisoras/comunidad-valenciana/valencia-provincia/valencia/noticias/videojuego-valenciano-que-permite-disenar-plantar-incluso-quemar-propia-falla-20240708_3390716" target="_blank" rel="noopener noreferrer" class="press-link">
+      <span class="press-outlet">COPE Valencia</span>
+      <span class="press-title">El videojuego valenciano que permite diseñar, plantar e incluso quemar tu propia falla</span>
+      <span class="press-ext" aria-hidden="true">↗</span>
+    </a>
+  </li>
+
+  <li class="press-card">
+    <a href="https://cadenaser.com/comunitat-valenciana/2024/09/20/aqui-es-donde-se-desarrollan-los-videojuegos-del-futuro-radio-valencia/" target="_blank" rel="noopener noreferrer" class="press-link">
+      <span class="press-outlet">Cadena SER · Radio Valencia</span>
+      <span class="press-title">Aquí es donde se desarrollan los videojuegos del futuro</span>
+      <span class="press-ext" aria-hidden="true">↗</span>
+    </a>
+  </li>
+
+  <li class="press-card">
+    <a href="https://www.lasprovincias.es/economia/startups/videojuego-realidad-virtual-conviertes-artista-fallero-20250317133915-nt.html" target="_blank" rel="noopener noreferrer" class="press-link">
+      <span class="press-outlet">Las Provincias</span>
+      <span class="press-title">El videojuego de realidad virtual en el que te conviertes en un artista fallero</span>
+      <span class="press-ext" aria-hidden="true">↗</span>
+    </a>
+  </li>
+</ul>
+    </section>
+
     <!-- EQUIPO -->
     <section class="team" aria-label="Equipo del proyecto">
       <h2>Equipo</h2>
@@ -126,6 +162,42 @@
       </div>
     </section>
 
+<!-- TRAYECTORIA / EVENTOS -->
+<div class="milestones" aria-label="Trayectoria y eventos">
+  <h3>Nuestra trayectoria</h3>
+
+  <p class="milestones-text">
+    A lo largo de estos años hemos participado en diferentes festivales e iniciativas del ecosistema.
+    En <strong>2024</strong>, estuvimos presentes en <strong>OWN</strong> y tomamos parte en acciones impulsadas por
+    <strong>AVRE</strong> (<em>Asociación Valenciana de la Realidad Virtual</em>), como el <strong>VR Day</strong> y el
+    <strong>Meetup</strong> en <strong>Las Naves</strong>. En <strong>2025</strong> repetimos presencia en <strong>OWN</strong>
+    y participamos en <strong>Valencia Digital Summit (VDS)</strong>. Todas estas experiencias nos han permitido validar la propuesta,
+    acercarla a distintos públicos y seguir tejiendo una comunidad sólida alrededor del proyecto.
+  </p>
+
+  <div class="event-photos" aria-label="Fotos en eventos">
+    <a class="event-photo" href="media/eventos/evento_1.jpg" data-gallery="events">
+      <img src="media/eventos/evento_1.jpg">
+    </a>
+    <a class="event-photo" href="media/eventos/evento_2.png" data-gallery="events">
+      <img src="media/eventos/evento_2.png">
+    </a>
+    <a class="event-photo" href="media/eventos/evento_3.jpeg" data-gallery="events">
+      <img src="media/eventos/evento_3.jpeg">
+    </a>
+    <a class="event-photo" href="media/eventos/evento_4.jpeg" data-gallery="events">
+      <img src="media/eventos/evento_4.jpeg">
+    </a>
+    <a class="event-photo" href="media/eventos/evento_5.jpeg" data-gallery="events">
+      <img src="media/eventos/evento_5.jpeg">
+    </a>
+    <a class="event-photo" href="media/eventos/evento_6.png" data-gallery="events">
+      <img src="media/eventos/evento_6.png">
+    </a>
+  </div>
+</div>
+
+
     <!-- PROCESO -->
     <section class="process proc-scroll" aria-label="Proceso y bocetos">
       <h2>Proceso</h2>
@@ -150,6 +222,7 @@
       </div>
       <p class="process-outro">Una muestra del proceso: bocetos, renders e ilustraciones incluidas en el juego.</p>
     </section>
+    
   </main>
 
   <!-- Lightbox -->
@@ -163,224 +236,200 @@
   </div>
 
   <script>
-  /* ==========================
-     Config
-  ========================== */
-  const PROJECTS = [
-    { slug: 'memories-en-cendra', url: 'memories-en-cendra.html', title: 'Memories en Cendra' },
-    { slug: 'demonyos',           url: 'demonyos.html',           title: 'Demonyos' },
-    { slug: 'eklektik',           url: 'eklektik.html',           title: 'Eklektik' }
-  ];
-
-  document.addEventListener('DOMContentLoaded', () => {
     /* ==========================
-       NAV entre proyectos
+       Config
     ========================== */
-    const currentSlug = document.body.getAttribute('data-project-slug');
-    const currentIndex = PROJECTS.findIndex(p => p.slug === currentSlug);
-    const btnPrev = document.getElementById('projPrev');
-    const btnNext = document.getElementById('projNext');
-    const tipPrev = document.getElementById('prevTip');
-    const tipNext = document.getElementById('nextTip');
+    const PROJECTS = [
+      { slug: 'memories-en-cendra', url: 'memories-en-cendra.html', title: 'Memories en Cendra' },
+      { slug: 'demonyos',           url: 'demonyos.html',           title: 'Demonyos' },
+      { slug: 'eklektik',           url: 'eklektik.html',           title: 'Eklektik' }
+    ];
 
-    if (currentIndex > 0 && btnPrev && tipPrev) {
-      const prev = PROJECTS[currentIndex - 1];
-      tipPrev.textContent = prev.title;
-      btnPrev.hidden = false;
-      btnPrev.addEventListener('click', () => { window.location.href = prev.url; });
-    }
-    if (currentIndex >= 0 && currentIndex < PROJECTS.length - 1 && btnNext && tipNext) {
-      const next = PROJECTS[currentIndex + 1];
-      tipNext.textContent = next.title;
-      btnNext.hidden = false;
-      btnNext.addEventListener('click', () => { window.location.href = next.url; });
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+      /* ==========================
+         NAV entre proyectos
+      ========================== */
+      const currentSlug = document.body.getAttribute('data-project-slug');
+      const currentIndex = PROJECTS.findIndex(p => p.slug === currentSlug);
+      const btnPrev = document.getElementById('projPrev');
+      const btnNext = document.getElementById('projNext');
+      const tipPrev = document.getElementById('prevTip');
+      const tipNext = document.getElementById('nextTip');
 
-    /* ==========================
-       LIGHTBOX
-    ========================== */
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const btnClose = document.getElementById('lbClose');
-    const btnPrevLb = document.getElementById('lbPrev');
-    const btnNextLb = document.getElementById('lbNext');
-
-    let group = '';
-    let shots = [];
-    let idx = 0;
-
-    function collect(groupName){ return Array.from(document.querySelectorAll(`[data-gallery="${groupName}"]`)); }
-    function openAt(a){
-      group = a.getAttribute('data-gallery') || '';
-      shots = collect(group);
-      idx = shots.indexOf(a);
-      if (idx < 0) idx = 0;
-      update();
-      lb.classList.add('open');
-      lb.removeAttribute('hidden');
-      // no bloqueamos el scroll global aquí porque el overlay móvil ya lo gestiona
-    }
-    function close(){
-      lb.classList.remove('open');
-      lb.setAttribute('hidden','');
-    }
-    function update(){
-      const link = shots[idx];
-      if (!link) return close();
-      lbImg.src = link.getAttribute('href');
-      const fallbackAlt = group === 'concepts' ? 'Concept' : 'Render';
-      const imgEl = link.querySelector('img');
-      lbImg.alt = (imgEl && imgEl.alt) ? imgEl.alt : `Imagen ampliada — ${fallbackAlt}`;
-    }
-    function prev(){ idx = (idx - 1 + shots.length) % shots.length; update(); }
-    function next(){ idx = (idx + 1) % shots.length; update(); }
-
-    document.querySelectorAll('[data-gallery]').forEach((a)=>{
-      a.addEventListener('click', (e)=>{ e.preventDefault(); openAt(a); });
-      a.setAttribute('role','button');
-      a.setAttribute('tabindex','0');
-    });
-
-    btnClose.addEventListener('click', close);
-    btnPrevLb.addEventListener('click', prev);
-    btnNextLb.addEventListener('click', next);
-    lb.addEventListener('click', (e)=>{ if(e.target===lb) close(); });
-    document.addEventListener('keydown', (e)=>{
-      if(lb.classList.contains('open')){
-        if(e.key==='Escape') close();
-        if(e.key==='ArrowLeft') prev();
-        if(e.key==='ArrowRight') next();
+      if (currentIndex > 0 && btnPrev && tipPrev) {
+        const prev = PROJECTS[currentIndex - 1];
+        tipPrev.textContent = prev.title;
+        btnPrev.hidden = false;
+        btnPrev.addEventListener('click', () => { window.location.href = prev.url; });
       }
-    });
-
-    /* ==========================
-       Galería: Ver más / Ver menos
-    ========================== */
-    const gallery = document.querySelector('.gallery.masonry.fullbleed');
-    const galTog  = document.getElementById('galleryToggle');
-    if (gallery && galTog){
-      function setGal(expanded){
-        gallery.classList.toggle('is-collapsed', !expanded);
-        galTog.setAttribute('aria-expanded', String(expanded));
-        galTog.textContent = expanded ? 'Ver menos' : 'Ver más';
+      if (currentIndex >= 0 && currentIndex < PROJECTS.length - 1 && btnNext && tipNext) {
+        const next = PROJECTS[currentIndex + 1];
+        tipNext.textContent = next.title;
+        btnNext.hidden = false;
+        btnNext.addEventListener('click', () => { window.location.href = next.url; });
       }
-      setGal(false);
-      galTog.addEventListener('click', ()=> setGal(galTog.getAttribute('aria-expanded') !== 'true'));
-    }
 
-    /* ==========================
-       PROCESO (dos modos)
-    ========================== */
-    const proc = document.getElementById('processStage');
-    if (proc && !proc.closest('.process').classList.contains('proc-scroll')){
-      const viewport = proc.querySelector('.proc-viewport');
-      const track = proc.querySelector('.proc-track');
-      const slides = Array.from(track.querySelectorAll('.proc-slide'));
-      const prevB = proc.querySelector('.proc-prev');
-      const nextB = proc.querySelector('.proc-next');
-      let i = 0;
+      /* ==========================
+         LIGHTBOX
+      ========================== */
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const btnClose = document.getElementById('lbClose');
+      const btnPrevLb = document.getElementById('lbPrev');
+      const btnNextLb = document.getElementById('lbNext');
 
-      function slideWidth(){ return viewport.clientWidth; }
-      function render(){
-        const x = -i * slideWidth();
-        track.style.transform = `translateX(${x}px)`;
-        prevB.disabled = i === 0;
-        nextB.disabled = i === slides.length - 1;
+      let group = '';
+      let shots = [];
+      let idx = 0;
+
+      function collect(groupName){ return Array.from(document.querySelectorAll(`[data-gallery="${groupName}"]`)); }
+      function openAt(a){
+        group = a.getAttribute('data-gallery') || '';
+        shots = collect(group);
+        idx = shots.indexOf(a);
+        if (idx < 0) idx = 0;
+        update();
+        lb.classList.add('open');
+        lb.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
       }
-      prevB.addEventListener('click', ()=>{ if(i>0){ i--; render(); } });
-      nextB.addEventListener('click', ()=>{ if(i<slides.length-1){ i++; render(); } });
-      window.addEventListener('resize', render);
-      proc.addEventListener('keydown', (e)=>{
-        if(e.key === 'ArrowLeft'){ e.preventDefault(); if(i>0){ i--; render(); } }
-        if(e.key === 'ArrowRight'){ e.preventDefault(); if(i<slides.length-1){ i++; render(); } }
+      function close(){
+        lb.classList.remove('open');
+        lb.setAttribute('hidden','');
+        document.body.style.overflow = '';
+      }
+      function update(){
+        const link = shots[idx];
+        if (!link) return close();
+        lbImg.src = link.getAttribute('href');
+        const fallbackAlt = group === 'concepts' ? 'Concept' : 'Render';
+        const imgEl = link.querySelector('img');
+        lbImg.alt = (imgEl && imgEl.alt) ? imgEl.alt : `Imagen ampliada — ${fallbackAlt}`;
+      }
+      function prev(){ idx = (idx - 1 + shots.length) % shots.length; update(); }
+      function next(){ idx = (idx + 1) % shots.length; update(); }
+
+      document.querySelectorAll('[data-gallery]').forEach((a)=>{
+        a.addEventListener('click', (e)=>{ e.preventDefault(); openAt(a); });
+        a.setAttribute('role','button');
+        a.setAttribute('tabindex','0');
       });
-      render();
-    } else if (proc) {
-      const viewport = proc.querySelector('.proc-viewport');
-      proc.addEventListener('keydown', (e)=>{
-        if (e.key === 'ArrowLeft'){ e.preventDefault(); viewport.scrollBy({ left: -viewport.clientWidth/1.05, behavior: 'smooth' }); }
-        if (e.key === 'ArrowRight'){ e.preventDefault(); viewport.scrollBy({ left:  viewport.clientWidth/1.05, behavior: 'smooth' }); }
-      });
-      viewport.addEventListener('wheel', (e)=>{
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-          e.preventDefault();
-          viewport.scrollBy({ left: e.deltaY, behavior: 'auto' });
+
+      btnClose.addEventListener('click', close);
+      btnPrevLb.addEventListener('click', prev);
+      btnNextLb.addEventListener('click', next);
+      lb.addEventListener('click', (e)=>{ if(e.target===lb) close(); });
+      document.addEventListener('keydown', (e)=>{
+        if(lb.classList.contains('open')){
+          if(e.key==='Escape') close();
+          if(e.key==='ArrowLeft') prev();
+          if(e.key==='ArrowRight') next();
         }
-      }, { passive: false });
-      let isDown = false, startX = 0, startScroll = 0;
-      const start = (x)=>{ isDown = true; startX = x; startScroll = viewport.scrollLeft; };
-      const move  = (x)=>{ if(!isDown) return; viewport.scrollLeft = startScroll - (x - startX); };
-      const stop  = ()=>{ isDown = false; };
-      viewport.addEventListener('mousedown',  (e)=>{ start(e.pageX); });
-      viewport.addEventListener('mousemove',  (e)=>{ move(e.pageX); });
-      viewport.addEventListener('mouseleave', stop);
-      viewport.addEventListener('mouseup',    stop);
-      viewport.addEventListener('touchstart', (e)=>{ if(e.touches[0]) start(e.touches[0].pageX); }, {passive:true});
-      viewport.addEventListener('touchmove',  (e)=>{ if(e.touches[0]) move(e.touches[0].pageX); },  {passive:true});
-      viewport.addEventListener('touchend',   stop);
-    }
-
-    /* ==========================
-       MENÚ MÓVIL (burger) + bloqueo de scroll
-    ========================== */
-    const burgerBtn = document.getElementById('burgerBtn');
-    const mobileOverlay = document.getElementById('mobileOverlay');
-    const closeMenu = document.getElementById('closeMenu');
-
-    let scrollY = 0;
-
-    function lockScroll(){
-      // Guarda posición actual y bloquea scroll (iOS-friendly)
-      scrollY = window.scrollY || document.documentElement.scrollTop || 0;
-      document.documentElement.classList.add('is-locked');
-      document.body.classList.add('is-locked');
-      document.body.style.top = `-${scrollY}px`;
-    }
-
-    function unlockScroll(){
-      // Restaura scroll exactamente donde estaba
-      document.documentElement.classList.remove('is-locked');
-      document.body.classList.remove('is-locked');
-      document.body.style.top = '';
-      window.scrollTo(0, scrollY);
-    }
-
-    function openMenu(){
-      mobileOverlay.classList.add('open');
-      mobileOverlay.setAttribute('aria-hidden','false');
-      burgerBtn.setAttribute('aria-expanded','true');
-      lockScroll();
-      const firstBtn = mobileOverlay.querySelector('.mobile-menu-btn');
-      if (firstBtn) firstBtn.focus();
-    }
-
-    function hideMenu(){
-      mobileOverlay.classList.remove('open');
-      mobileOverlay.setAttribute('aria-hidden','true');
-      burgerBtn.setAttribute('aria-expanded','false');
-      unlockScroll();
-      burgerBtn.focus();
-    }
-
-    if (burgerBtn && mobileOverlay && closeMenu){
-      burgerBtn.addEventListener('click', openMenu);
-      closeMenu.addEventListener('click', hideMenu);
-      mobileOverlay.addEventListener('click', (e)=>{ if (e.target === mobileOverlay) hideMenu(); });
-      document.addEventListener('keydown', (e)=>{ if (mobileOverlay.classList.contains('open') && e.key === 'Escape'){ hideMenu(); } });
-      mobileOverlay.querySelectorAll('.mobile-menu-btn').forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          const href = btn.getAttribute('data-nav');
-          if (href) window.location.href = href;
-        });
       });
 
-      // Evita scroll por gesto dentro del overlay en móvil (por si acaso)
-      mobileOverlay.addEventListener('touchmove', (e)=>{ e.preventDefault(); }, { passive: false });
-    }
-  });
-</script>
+      /* ==========================
+         Galería: Ver más / Ver menos
+      ========================== */
+      const gallery = document.querySelector('.gallery.masonry.fullbleed');
+      const galTog  = document.getElementById('galleryToggle');
+      if (gallery && galTog){
+        function setGal(expanded){
+          gallery.classList.toggle('is-collapsed', !expanded);
+          galTog.setAttribute('aria-expanded', String(expanded));
+          galTog.textContent = expanded ? 'Ver menos' : 'Ver más';
+        }
+        setGal(false);
+        galTog.addEventListener('click', ()=> setGal(galTog.getAttribute('aria-expanded') !== 'true'));
+      }
 
+      /* ==========================
+         PROCESO (dos modos)
+      ========================== */
+      const proc = document.getElementById('processStage');
+      if (proc && !proc.closest('.process').classList.contains('proc-scroll')){
+        const viewport = proc.querySelector('.proc-viewport');
+        const track = proc.querySelector('.proc-track');
+        const slides = Array.from(track.querySelectorAll('.proc-slide'));
+        const prevB = proc.querySelector('.proc-prev');
+        const nextB = proc.querySelector('.proc-next');
+        let i = 0;
+
+        function slideWidth(){ return viewport.clientWidth; }
+        function render(){
+          const x = -i * slideWidth();
+          track.style.transform = `translateX(${x}px)`;
+          prevB.disabled = i === 0;
+          nextB.disabled = i === slides.length - 1;
+        }
+        prevB.addEventListener('click', ()=>{ if(i>0){ i--; render(); } });
+        nextB.addEventListener('click', ()=>{ if(i<slides.length-1){ i++; render(); } });
+        window.addEventListener('resize', render);
+        proc.addEventListener('keydown', (e)=>{
+          if(e.key === 'ArrowLeft'){ e.preventDefault(); if(i>0){ i--; render(); } }
+          if(e.key === 'ArrowRight'){ e.preventDefault(); if(i<slides.length-1){ i++; render(); } }
+        });
+        render();
+      } else if (proc) {
+        const viewport = proc.querySelector('.proc-viewport');
+        proc.addEventListener('keydown', (e)=>{
+          if (e.key === 'ArrowLeft'){ e.preventDefault(); viewport.scrollBy({ left: -viewport.clientWidth/1.05, behavior: 'smooth' }); }
+          if (e.key === 'ArrowRight'){ e.preventDefault(); viewport.scrollBy({ left:  viewport.clientWidth/1.05, behavior: 'smooth' }); }
+        });
+        viewport.addEventListener('wheel', (e)=>{
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            viewport.scrollBy({ left: e.deltaY, behavior: 'auto' });
+          }
+        }, { passive: false });
+        let isDown = false, startX = 0, startScroll = 0;
+        const start = (x)=>{ isDown = true; startX = x; startScroll = viewport.scrollLeft; };
+        const move  = (x)=>{ if(!isDown) return; viewport.scrollLeft = startScroll - (x - startX); };
+        const stop  = ()=>{ isDown = false; };
+        viewport.addEventListener('mousedown',  (e)=>{ start(e.pageX); });
+        viewport.addEventListener('mousemove',  (e)=>{ move(e.pageX); });
+        viewport.addEventListener('mouseleave', stop);
+        viewport.addEventListener('mouseup',    stop);
+        viewport.addEventListener('touchstart', (e)=>{ if(e.touches[0]) start(e.touches[0].pageX); }, {passive:true});
+        viewport.addEventListener('touchmove',  (e)=>{ if(e.touches[0]) move(e.touches[0].pageX); },  {passive:true});
+        viewport.addEventListener('touchend',   stop);
+      }
+
+      /* ==========================
+         MENÚ MÓVIL (burger)
+      ========================== */
+      const burgerBtn = document.getElementById('burgerBtn');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      const closeMenu = document.getElementById('closeMenu');
+
+      function openMenu(){
+        mobileOverlay.classList.add('open');
+        mobileOverlay.setAttribute('aria-hidden','false');
+        burgerBtn.setAttribute('aria-expanded','true');
+        document.body.style.overflow = 'hidden';
+        const firstBtn = mobileOverlay.querySelector('.mobile-menu-btn');
+        if (firstBtn) firstBtn.focus();
+      }
+      function hideMenu(){
+        mobileOverlay.classList.remove('open');
+        mobileOverlay.setAttribute('aria-hidden','true');
+        burgerBtn.setAttribute('aria-expanded','false');
+        document.body.style.overflow = '';
+        burgerBtn.focus();
+      }
+
+      if (burgerBtn && mobileOverlay && closeMenu){
+        burgerBtn.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', hideMenu);
+        mobileOverlay.addEventListener('click', (e)=>{ if (e.target === mobileOverlay) hideMenu(); });
+        document.addEventListener('keydown', (e)=>{ if (mobileOverlay.classList.contains('open') && e.key === 'Escape'){ hideMenu(); } });
+        mobileOverlay.querySelectorAll('.mobile-menu-btn').forEach(btn=>{
+          btn.addEventListener('click', ()=>{
+            const href = btn.getAttribute('data-nav');
+            if (href) window.location.href = href;
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
-
-
