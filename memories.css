@@ -432,6 +432,18 @@ main {
 }
 .event-photo:hover img{ transform: scale(1.02); }
 
+.lightbox { 
+  z-index: 400 !important;    /* por encima de .proj-nav (15 desktop, 120 móvil) */
+}
+.lb-close,
+.lb-prev,
+.lb-next {
+  z-index: 410 !important;    /* por encima del overlay del lightbox */
+}
 
-.lightbox { z-index: 300 !important; }
+/* (informativo) en móvil tus flechas de proyecto ya están a 120 */
+@media (max-width: 720px){
+  .proj-nav { z-index: 120; } /* sigue por debajo del lightbox (400/410) */
+}
+
 
